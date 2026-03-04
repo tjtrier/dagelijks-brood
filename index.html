@@ -216,6 +216,34 @@
     font-weight: 500;
   }
 
+  /* ---- ORDER NOTICE ---- */
+  .order-notice {
+    border: 1px solid var(--wheat);
+    background: var(--cream);
+    padding: 16px 24px;
+    margin-bottom: 24px;
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .order-notice strong {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ---- PRODUCT IMAGES ---- */
+  .item-img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--ink);
+    display: block;
+  }
+
   /* ---- MENU / PRODUCTS ---- */
   #menu {
     border-bottom: 1px solid var(--stone);
@@ -647,7 +675,7 @@
 
 <!-- ======== ABOUT ======== -->
 <section id="about">
-  <p class="section-title">My Bread</p>
+  <p class="section-title">Our Bread</p>
   <div class="divider"></div>
   <p class="about-text">
     Real sourdough, made the slow way. Every loaf is hand shaped, naturally leavened, 
@@ -661,7 +689,7 @@
     </div>
     <div class="about-detail">
       <div class="about-detail-label">Ingredients</div>
-      <div class="about-detail-value">Flour</div>
+      <div class="about-detail-value">Four</div>
     </div>
     <div class="about-detail">
       <div class="about-detail-label">Location</div>
@@ -677,11 +705,17 @@
 <!-- ======== MENU ======== -->
 <section id="menu">
   <p class="section-title">Menu</p>
-  <p class="section-subtitle">What I Bake</p>
+  <p class="section-subtitle">What We Bake</p>
+
+  <div class="order-notice">
+    <strong>Please Note:</strong> Croissants and large orders (6+ items) require at least 24 hours advance notice. We bake everything fresh to order.
+  </div>
 
   <div class="menu-grid">
 
     <div class="menu-item" data-id="whole" data-price="10">
+      <!-- Uncomment the line below and replace YOUR-IMAGE-URL with your photo URL -->
+      <!-- <img class="item-img" src="YOUR-IMAGE-URL" alt="Sourdough whole loaf"> -->
       <div class="item-info">
         <div class="item-name">Sourdough Loaf — Whole</div>
         <div class="item-desc">Classic naturally leavened sourdough, crisp crust, open crumb</div>
@@ -699,6 +733,7 @@
     </div>
 
     <div class="menu-item" data-id="half" data-price="7">
+      <!-- <img class="item-img" src="YOUR-IMAGE-URL" alt="Sourdough half loaf"> -->
       <div class="item-info">
         <div class="item-name">Sourdough Loaf — Half</div>
         <div class="item-desc">Same beautiful loaf, half the size</div>
@@ -716,6 +751,7 @@
     </div>
 
     <div class="menu-item" data-id="bagels-plain" data-price="10">
+      <!-- <img class="item-img" src="YOUR-IMAGE-URL" alt="Sourdough plain bagels"> -->
       <div class="item-info">
         <div class="item-name">Sourdough Bagels — Plain</div>
         <div class="item-desc">Chewy, tangy, boiled &amp; baked — sold by the half dozen</div>
@@ -733,6 +769,7 @@
     </div>
 
     <div class="menu-item" data-id="bagels-everything" data-price="10">
+      <!-- <img class="item-img" src="YOUR-IMAGE-URL" alt="Sourdough everything bagels"> -->
       <div class="item-info">
         <div class="item-name">Sourdough Bagels — Everything</div>
         <div class="item-desc">Chewy, tangy, boiled &amp; baked, loaded with everything seasoning — sold by the half dozen</div>
@@ -750,6 +787,7 @@
     </div>
 
     <div class="menu-item" data-id="pizza" data-price="8">
+      <!-- <img class="item-img" src="YOUR-IMAGE-URL" alt="Sourdough pizza dough"> -->
       <div class="item-info">
         <div class="item-name">Sourdough Pizza Dough</div>
         <div class="item-desc">Ready to stretch, top, and bake — makes one large pizza</div>
@@ -767,9 +805,10 @@
     </div>
 
     <div class="menu-item" data-id="croissants" data-price="12">
+      <!-- <img class="item-img" src="YOUR-IMAGE-URL" alt="Sourdough croissants"> -->
       <div class="item-info">
         <div class="item-name">Sourdough Croissants</div>
-        <div class="item-desc">Buttery, flaky, laminated with sourdough tang — sold by the half dozen</div>
+        <div class="item-desc">Buttery, flaky, laminated with sourdough tang — sold by the half dozen. <strong>Requires 24-hour advance notice.</strong></div>
         <div class="item-weight">6 ct · Bread flour, sourdough starter, European-style butter, granulated sugar, salt, whole milk, water, egg</div>
         <div class="item-allergen">Allergens: Wheat, Milk, Egg</div>
       </div>
@@ -892,6 +931,7 @@
   // ---- DISCOUNT CODES ----
   // Change these codes to whatever you want!
   const discountCodes = {
+    'HEROES': { percent: 50, label: 'First Responder / Military Discount (50% off)' },
     'SENIOR55': { percent: 50, label: 'Senior Discount (50% off)' },
     'FIRSTRESPONDER': { percent: 50, label: 'First Responder Discount (50% off)' },
     'MILITARY': { percent: 50, label: 'Military Discount (50% off)' },
