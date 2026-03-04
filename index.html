@@ -1106,13 +1106,13 @@
         document.getElementById('order-form-wrapper').style.display = 'none';
         document.getElementById('order-success').style.display = 'block';
       } else {
-        alert('There was a problem submitting your order. Please try again or text/call us directly.');
+        alert('There was a problem submitting your order. Please try again or text/call me directly.');
         btn.disabled = false;
         btn.textContent = 'SUBMIT ORDER';
       }
     })
     .catch(error => {
-      alert('There was a problem submitting your order. Please try again or text/call us directly.');
+      alert('There was a problem submitting your order. Please try again or text/call me directly.');
       btn.disabled = false;
       btn.textContent = 'SUBMIT ORDER';
     });
