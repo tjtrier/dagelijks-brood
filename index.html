@@ -490,6 +490,21 @@
     margin-bottom: 24px;
   }
 
+  .discount-banner {
+    border: 1px solid var(--success);
+    background: var(--success-bg);
+    padding: 14px 20px;
+    margin-bottom: 16px;
+    font-size: 15px;
+    text-align: center;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .discount-banner strong {
+    color: var(--success);
+  }
+
   .discount-apply-btn {
     padding: 14px 24px;
     background: none;
@@ -689,7 +704,7 @@
     </div>
     <div class="about-detail">
       <div class="about-detail-label">Ingredients</div>
-      <div class="about-detail-value">Four</div>
+      <div class="about-detail-value">Flour</div>
     </div>
     <div class="about-detail">
       <div class="about-detail-label">Location</div>
@@ -705,7 +720,7 @@
 <!-- ======== MENU ======== -->
 <section id="menu">
   <p class="section-title">Menu</p>
-  <p class="section-subtitle">What We Bake</p>
+  <p class="section-subtitle">What I Bake</p>
 
   <div class="order-notice">
     <strong>Please Note:</strong> Croissants and large orders (6+ items) require at least 24 hours advance notice. We bake everything fresh to order.
@@ -843,6 +858,9 @@
 
     <!-- Discount Code -->
     <div class="discount-section" id="discount-section">
+      <div class="discount-banner">
+        I proudly offer <strong>50% off</strong> for military, first responders, and seniors (55+). Enter your discount code at checkout.
+      </div>
       <div class="form-label" style="margin-bottom: 8px;">Discount Code</div>
       <div style="display: flex; gap: 8px;">
         <input class="form-input" type="text" id="discount-code" placeholder="Enter code" style="flex: 1; text-transform: uppercase;">
@@ -854,7 +872,7 @@
     <!-- Pickup Info -->
     <div class="pickup-info">
       <p><strong>Pickup Location:</strong> 9750 E Jennings Dr #108, Traverse City, MI 49684</p>
-      <p><strong>How it works:</strong> Place your order below. We'll confirm availability and your pickup time via text or email within 24 hours. Payment is collected at pickup.</p>
+      <p><strong>How it works:</strong> Place your order below.I will confirm availability and your pickup time via text or email within 24 hours. Payment is collected at pickup.</p>
     </div>
 
     <!-- Order Form -->
@@ -883,7 +901,7 @@
 
     <div class="form-group">
       <label class="form-label" for="notes">Notes</label>
-      <textarea class="form-textarea" id="notes" placeholder="Anything we should know? Slicing preferences, etc."></textarea>
+      <textarea class="form-textarea" id="notes" placeholder="Anything I should know?"></textarea>
     </div>
 
     <button class="submit-btn" id="submit-btn" onclick="submitOrder()" disabled>
@@ -895,7 +913,7 @@
   <div class="order-success" id="order-success">
     <h3>Order Received!</h3>
     <p>
-      Thank you! We'll confirm your order and pickup time shortly via text or email.
+      Thank you! I will confirm your order and pickup time shortly via text or email.
       <br>See you soon.
     </p>
   </div>
