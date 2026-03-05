@@ -1,47 +1,631 @@
-<!-- ======== SECTION 2: WHY I BAKE ======== -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Story — Dagalisch Brood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Josefin+Sans:wght@300;400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --cream: #f5f0e8;
+    --warm-white: #faf8f4;
+    --stone: #d4cec4;
+    --wheat: #c4a96a;
+    --text-secondary: #6b6560;
+    --border: #2a2a2a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ---- HEADER ---- */
+  header {
+    text-align: center;
+    padding: 60px 24px 40px;
+    border-bottom: 1px solid var(--ink);
+    background: var(--warm-white);
+    animation: fadeUp 0.8s ease-out;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    max-width: 600px;
+    margin: 0 auto 24px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .logo-name {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: clamp(36px, 8vw, 64px);
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    text-decoration: none;
+    color: var(--ink);
+    display: inline-block;
+  }
+
+  .logo-wheat {
+    display: block;
+    margin: 16px auto;
+    width: 48px;
+    height: auto;
+    opacity: 0.7;
+  }
+
+  .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+  }
+
+  .cottage-notice {
+    margin-top: 24px;
+    padding: 12px 20px;
+    font-size: 11px;
+    font-family: 'Josefin Sans', sans-serif;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    border: 1px solid var(--stone);
+    display: inline-block;
+    line-height: 1.6;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    text-align: center;
+    padding: 16px 24px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--ink);
+    background: var(--warm-white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  nav a {
+    color: var(--ink);
+    text-decoration: none;
+    margin: 0 20px;
+    padding: 4px 0;
+    position: relative;
+    transition: color 0.3s;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--ink);
+    transition: width 0.3s;
+  }
+
+  nav a:hover::after { width: 100%; }
+  nav a.active::after { width: 100%; }
+
+  /* ---- PAGE HERO ---- */
+  .page-hero {
+    text-align: center;
+    padding: 60px 24px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .page-hero-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+
+  .page-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .page-hero-rule {
+    width: 60px;
+    height: 1px;
+    background: var(--ink);
+    margin: 24px auto 0;
+  }
+
+  /* ---- STORY SECTIONS ---- */
+  .story-section {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 60px 24px;
+    border-bottom: 1px solid var(--stone);
+    animation: fadeUp 0.8s ease-out both;
+  }
+
+  .story-section:last-of-type {
+    border-bottom: none;
+  }
+
+  .story-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+
+  .story-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: var(--stone);
+    line-height: 1;
+    margin-bottom: -8px;
+    display: block;
+  }
+
+  .story-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--stone);
+  }
+
+  .story-body {
+    font-size: 18px;
+    color: var(--text-secondary);
+    line-height: 1.9;
+  }
+
+  .story-body p {
+    margin-bottom: 20px;
+  }
+
+  .story-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .story-body strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ---- HIGHLIGHT BOX ---- */
+  .highlight-box {
+    border: 1px solid var(--wheat);
+    background: var(--cream);
+    padding: 24px 28px;
+    margin-top: 28px;
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.8;
+  }
+
+  .highlight-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .highlight-box ul li {
+    padding: 6px 0;
+    border-bottom: 1px solid var(--stone);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 16px;
+  }
+
+  .highlight-box ul li:last-child {
+    border-bottom: none;
+  }
+
+  .highlight-box ul li::before {
+    content: '—';
+    color: var(--wheat);
+    font-family: 'Josefin Sans', sans-serif;
+    flex-shrink: 0;
+  }
+
+  .highlight-box-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  /* ---- BACK LINK ---- */
+  .back-link-wrap {
+    text-align: center;
+    padding: 40px 24px 60px;
+  }
+
+  .back-link {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    transition: opacity 0.3s;
+  }
+
+  .back-link:hover { opacity: 0.5; }
+
+  /* ---- FOOTER ---- */
+  footer {
+    text-align: center;
+    padding: 40px 24px;
+    border-top: 1px solid var(--ink);
+  }
+
+  .footer-name {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .footer-address {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .footer-cottage {
+    margin-top: 20px;
+    font-size: 11px;
+    font-family: 'Josefin Sans', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 40px 20px 32px; }
+    .header-top { font-size: 9px; letter-spacing: 3px; }
+    .logo-name { letter-spacing: 3px; }
+    nav a { margin: 0 12px; font-size: 11px; }
+    .story-section { padding: 40px 20px; }
+    .story-number { font-size: 52px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ======== HEADER ======== -->
+<header>
+  <div class="header-top">
+    <span>Hand Made</span>
+    <span>Small Batch</span>
+  </div>
+
+  <a href="index.html" class="logo-name">Dagalisch Brood</a>
+
+  <svg class="logo-wheat" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#1a1a1a" stroke-width="1.2" fill="none">
+      <line x1="50" y1="135" x2="50" y2="20"/>
+      <ellipse cx="50" cy="20" rx="6" ry="14" transform="rotate(0 50 20)"/>
+      <ellipse cx="38" cy="38" rx="5" ry="12" transform="rotate(-20 38 38)"/>
+      <ellipse cx="62" cy="38" rx="5" ry="12" transform="rotate(20 62 38)"/>
+      <ellipse cx="35" cy="58" rx="5" ry="11" transform="rotate(-25 35 58)"/>
+      <ellipse cx="65" cy="58" rx="5" ry="11" transform="rotate(25 65 58)"/>
+      <ellipse cx="38" cy="78" rx="4" ry="10" transform="rotate(-20 38 78)"/>
+      <ellipse cx="62" cy="78" rx="4" ry="10" transform="rotate(20 62 78)"/>
+      <line x1="50" y1="30" x2="38" y2="42"/>
+      <line x1="50" y1="30" x2="62" y2="42"/>
+      <line x1="50" y1="50" x2="36" y2="62"/>
+      <line x1="50" y1="50" x2="64" y2="62"/>
+      <line x1="50" y1="70" x2="39" y2="82"/>
+      <line x1="50" y1="70" x2="61" y2="82"/>
+    </g>
+  </svg>
+
+  <p class="tagline">Daily Bread</p>
+
+  <div class="cottage-notice">
+    Made in a home kitchen · Traverse City, MI<br>
+    Not inspected by Michigan Dept. of Agriculture &amp; Rural Development
+  </div>
+</header>
+
+<!-- ======== NAV ======== -->
+<nav>
+  <a href="index.html#about">About</a>
+  <a href="about.html" class="active">Our Story</a>
+  <a href="index.html#menu">Menu</a>
+  <a href="index.html#order">Order</a>
+</nav>
+
+<!-- ======== PAGE HERO ======== -->
+<div class="page-hero">
+  <p class="page-hero-label">The Baker Behind the Bread</p>
+  <h1 class="page-hero-title">Our Story</h1>
+  <div class="page-hero-rule"></div>
+</div>
+
+<!-- ======== SECTION 1: ABOUT ME ======== -->
+<div class="story-section">
+  <p class="story-label">Section One</p>
+  <span class="story-number">01</span>
+  <h2 class="story-title">About Me</h2>
+  <div class="story-body">
+    <p>
+      Hi — I'm the person behind Dagalisch Brood. By day, I serve as a Vice President 
+      at a company where most of my time is spent solving problems, making decisions, 
+      and navigating the constant pace of professional life. By night, I am a graduate
+      student studying data science. 
+    </p>
+    <p>
+      After long days spent working in front of screens and managing complex issues, 
+      you are probably wondering how I find time, and why I bake sourdough.
+    </p>
+    <p>    
+      Baking was never something I never expected to enjoy and/or do. In fact, I had always assumed 
+      it simply wasn’t for me. The patience required to idly sit by and wait 10-15 minutes 
+      between batches of cookies isn't something I inherited. 
+    </p>
+    <p>   
+      Then came sourdough, which I discovered by accident. My beautiful sister-in-law
+      was gifted a starter. Curious, at a local market I threw a starter jar into my cart and
+      hoped for the best, believing that I would try it, and then stash the jar in the cupboard for
+      the remainder of my life. 
+    <p>
+      Fast forward to today. What began as curiosity wquickly turned into something unexpectedly meaningful.
+      Today I maintain three sourdough starters — Esther, Frenchie, and Mario — each with
+      a story of its own. Esther’s lineage traces back to Egypt along the Red Sea and is
+      believed to date back thousands of years. Frenchie comes from France and is said to
+      be more than 500 years old. Mario originates from Italy and carries a lineage that
+      stretches back over a thousand years.
+    </p>
+    <p>
+      Its fascinating to me that even though I feed them the exact same flour, in the same
+      ratios, and keep them in the same kitchen, they behave completely differently.
+      Each starter rises at its own pace, develops its own aroma, and gives the bread
+      slightly different character. In a way, they feel less like ingredients and more
+      like living companions in the baking process.
+    </p>
+    <p>
+      So that's the story. A serindiptious trip out to a local market with my sister-in-law
+      got me exposed to the chemistry of bread making which I find fascinating. 
+      Now I find that the process is what keeps me baking. The quiet rhythm of mixing dough, shaping loaves, 
+      and baking bread early in the morning before my day turns into chaos has became a 
+      kind of therapeutic for me. It’s one of the few things that lets me slow downfrom my hectic days and create 
+      something real with my hands.
+    </p>
+      Also, and probably most importantly, the more time I spend learning this craft, the more
+      opportunities I have had to bless people with my 'test loaves'. Along the way as my I started to 
+      realize that something as simple as a fresh loaf of bread brings a small 
+      moment of joy to others, and a sense of community. That realization is what inspired Dagalisch Brood.
+  </div>
+</div>
+
 <div class="story-section">
   <p class="story-label">Section Two</p>
   <span class="story-number">02</span>
   <h2 class="story-title">Why I Bake</h2>
   <div class="story-body">
     <p>
-      Honestly? Baking saved me. There's something about the rhythm of it — the measuring, 
-      the folding, the waiting — that quiets the noise in a way little else does. When my 
-      hands are in dough, my mind finally settles. It has become one of my most consistent 
-      forms of peace, a daily practice that grounds me and gives the day a sense of purpose.
+      The name <strong>Dagalisch Brood</strong> comes from Dutch and means 
+      <em>“daily bread.”</em> The phrase reflects something simple but meaningful — 
+      the idea that good bread has always been part of everyday life.
+    </p>
+
+    <p>
+      The name also reflects my heritage. My family roots trace back to both 
+      Germany and the Netherlands, and I’ve always felt a deep connection to 
+      that part of the world. I love visiting the Netherlands — the bakeries, 
+      the markets, the culture of fresh bread being part of daily life. 
     </p>
     <p>
-      But what started as something I did for myself quickly became something I wanted to 
-      share. There is a particular joy in handing someone a loaf of bread that was made 
-      that morning — watching them smell it, feel the weight of it, knowing they're about 
-      to experience something most people never get from a grocery store. That moment never 
-      gets old for me. It genuinely fills me up.
+      The name is also inspired by my faith. The idea of “daily bread” reminds me 
+      that even the simplest things can be blessings — a meal shared, a table 
+      gathered around, or a warm loaf of bread passed from one person to another.
     </p>
     <p>
-      I bake because I believe real food should be made from real ingredients by real people. 
-      My bread contains flour, water, starter, and Himalayan sea salt — nothing else. 
-      The process takes longer, a proper sourdough fermentation runs 12 to 24 hours, 
-      but the result is a loaf that is more flavorful, more digestible, and more honest 
-      than anything made in a factory. I refuse to compromise on that.
+      Dagalisch Brood is my small way of bringing a little of that tradition 
+      here to Traverse City. Everything is made slowly, by hand, with simple 
+      ingredients and real fermentation.
     </p>
     <p>
-      Part of the joy is in the living culture itself. I maintain several starters with 
-      different origins — one from Egypt named "Esther," one from France called "Frenchie," 
-      and one from Italy known simply as "Italian." Many people say that if you feed starters 
-      the same flour they eventually become identical, but I find each one develops its own 
-      personality, aroma, and rhythm. Learning to read those differences is one of the most 
-      fascinating parts of this craft.
-    </p>
-    <p>
-      I also bake because I love this community. In a world that often feels chaotic and 
-      disconnected, something as simple as fresh bread can still bring people together. 
-      Offering military, first responder, and senior discounts isn't a marketing tactic — 
-      it's simply the right thing to do. Good bread should be accessible to the people 
-      who have given so much.
-    </p>
-    <p>
-      At the end of the day, baking is my small way of blessing people — sharing something 
-      warm, handmade, and offered with genuine care. That's enough for me.
+      More than anything, I bake because I love blessing people. Sometimes it 
+      only takes a warm loaf of bread to brighten someone’s day — and sharing 
+      something made with care is one of the simplest ways I know to do that.
     </p>
   </div>
 </div>
+
+<!-- ======== SECTION 3: HOW I BAKE ======== -->
+<div class="story-section">
+  <p class="story-label">Section Three</p>
+  <span class="story-number">03</span>
+  <h2 class="story-title">How I Bake</h2>
+  <div class="story-body">
+    <p>
+      Everything starts with my sourdough starter — a living culture of wild yeast and beneficial bacteria 
+      that I feed and maintain daily. The flour I use to feed my starters is organic, and the flour I bake 
+      with is specially ordered: unbleached and unbromated, the way flour was meant to be before industrial 
+      shortcuts became common in commercial baking.
+    </p>
+    <p>
+      For most breads, my starter provides all the natural leavening needed. The process typically looks 
+      like this: mix, stretch and fold over several hours, shape, then a long cold retard in the 
+      refrigerator overnight. The next morning, the loaves go straight from the fridge into a screaming hot 
+      dutch oven. That steam-trapped environment gives the bread its signature open crumb and crackling crust.
+    </p>
+    <p>
+      For certain products like bagels and pizza dough, I can make them fully sourdough — and sometimes I do. 
+      But I prefer the structure and rise that comes from adding a very small amount of active dry yeast 
+      alongside the starter. It allows the dough to develop the texture those foods are known for while still 
+      benefiting from sourdough fermentation and flavor.
+    </p>
+    <p>
+      Bagels are boiled before baking — a traditional step that gives them their characteristic chew and 
+      shiny exterior. Croissants are laminated by hand, which means folding cold butter into the dough 
+      in layers over the course of a full day. It's labor-intensive, which is why they require advance notice.
+    </p>
+    <div class="highlight-box">
+      <div class="highlight-box-title">My Process at a Glance</div>
+      <ul>
+        <li>Organic-fed sourdough starter maintained daily</li>
+        <li>Specialty flour that is unbleached and unbromated</li>
+        <li>Long cold fermentation for better flavor and digestibility</li>
+        <li>Hand-shaped, never machine-formed</li>
+        <li>Baked in small batches — typically 2 to 4 loaves at a time</li>
+        <li>Made fresh to order — no sitting on a shelf</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ======== SECTION 4: SANITATION & CLEANLINESS ======== -->
+<div class="story-section">
+  <p class="story-label">Section Four</p>
+  <span class="story-number">04</span>
+  <h2 class="story-title">Sanitation &amp; Cleanliness</h2>
+  <div class="story-body">
+    <p>
+      I take food safety seriously — full stop. My kitchen is clean, organized, and dedicated to baking 
+      when I'm in production. All preparation surfaces, tools, and equipment are thoroughly cleaned 
+      before, during, and after every bake using a non-toxic, food-safe cleanser.
+    </p>
+    <p>
+      <strong>Surfaces and tools</strong> are washed and sanitized before and after every bake. I use 
+      food-grade sanitizer on all contact surfaces, proofing baskets, bench scrapers, and baking vessels. 
+      My dutch ovens and baking sheets are properly maintained, seasoned, and kept clean.
+    </p>
+    <p>
+      <strong>Hand hygiene</strong> is non-negotiable. I wash my hands thoroughly before handling any 
+      dough or baked product and again after handling anything that isn't food.
+    </p>
+    <p>
+      I live in a dog-friendly household, but animals are never allowed on counters or food preparation 
+      surfaces and are kept completely away from the baking area while any product is being made.
+    </p>
+    <p>
+      I operate with a very simple standard: if I would not feel comfortable eating it myself, I will 
+      not sell it to you.
+    </p>
+    <p>
+      To continue strengthening my food safety practices, I will be enrolling in a ServSafe food safety 
+      course and certification in the near future.
+    </p>
+    <p>
+      If I am sick — or even think I might be getting sick — I will not bake. In that situation, any 
+      affected orders will be communicated to customers immediately and rescheduled if necessary.
+    </p>
+    <p>
+      <strong>Allergen transparency</strong> is important to me. All products are baked in the same 
+      kitchen and on the same surfaces. While I do my best to prevent cross-contact, my kitchen is 
+      not allergen-free. Every product listing includes a full allergen disclosure — please review 
+      it carefully if you have a food allergy or sensitivity.
+    </p>
+    <p>
+      As required by Michigan's Cottage Food Law, my kitchen has not been formally inspected by the 
+      Michigan Department of Agriculture &amp; Rural Development. I operate transparently under that 
+      law and am happy to answer any questions you have about my process.
+    </p>
+
+    <div class="highlight-box">
+      <div class="highlight-box-title">Food Safety Commitments</div>
+      <ul>
+        <li>Non-toxic, food-safe cleaners used before, during, and after every bake</li>
+        <li>Surfaces and tools sanitized before and after production</li>
+        <li>Strict hand hygiene throughout the baking process</li>
+        <li>Animals kept away from food preparation areas</li>
+        <li>No baking while ill or experiencing symptoms</li>
+        <li>ServSafe certification planned to further enhance food safety practices</li>
+        <li>Full ingredient and allergen disclosure on every product</li>
+        <li>Transparent cottage food operation under Michigan law</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ======== BACK LINK ======== -->
+<div class="back-link-wrap">
+  <a href="index.html#order" class="back-link">← Place an Order</a>
+</div>
+
+<!-- ======== FOOTER ======== -->
+<footer>
+  <div class="footer-name">Dagalisch Brood</div>
+  <div class="footer-address">
+    9750 E Jennings Dr #108<br>
+    Traverse City, MI 49684
+  </div>
+  <div style="margin-top: 20px;"></div>
+  <div class="footer-name" style="font-size: 0.75em;">Contact Information:</div>
+  <div class="footer-address" style="font-size: 0.75em;">
+    dagalischbrood@gmail.com
+  </div>
+  <div class="footer-cottage">
+    Made in a home kitchen that has not been inspected by the 
+    Michigan Department of Agriculture &amp; Rural Development. 
+    Cottage food operation under Michigan's Cottage Food Law.
+  </div>
+</footer>
+
+</body>
+</html>
