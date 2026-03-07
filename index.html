@@ -883,8 +883,9 @@
     <!-- Discount Code -->
     <div class="discount-section" id="discount-section">
       <div class="discount-banner">
-        I proudly offer <strong>50% off of sourdough whole, half loaves,.bread bowls and bagels </strong> for military, first responders, and seniors (55+). Enter your discount code at checkout.
+        I proudly offer <strong>50% off of sourdough whole loaves and bagels </strong> for military, first responders, and seniors (55+). Enter your discount code at checkout.
       </div>
+      <p style="font-size: 14px; color: var(--text-secondary); font-style: italic; margin-bottom: 12px;">Don't have a code? DM me on Instagram <a href="https://www.instagram.com/dagelijksbrood_sourdough" target="_blank" style="color: var(--ink);">@dagelijksbrood_sourdough</a> or email <a href="mailto:dagelijksbroodsourdough@gmail.com" style="color: var(--ink);">dagelijksbroodsourdough@gmail.com</a> and I'll get one to you.</p>
       <div class="form-label" style="margin-bottom: 8px;">Discount Code</div>
       <div style="display: flex; gap: 8px;">
         <input class="form-input" type="text" id="discount-code" placeholder="Enter code" style="flex: 1; text-transform: uppercase;">
@@ -998,6 +999,7 @@
     'SENIOR55': { percent: 50, label: 'Senior Discount (50% off)' },
     'FIRSTRESPONDER': { percent: 50, label: 'First Responder Discount (50% off)' },
     'MILITARY': { percent: 50, label: 'Military Discount (50% off)' },
+    'FAMILY': { percent: 50, label: 'Friends & Family Discount (50% off)' },
     'THANKYOU': { percent: 50, label: 'First Responder / Military / Senior Discount (50% off)' }
   };
   let activeDiscount = null;
@@ -1050,10 +1052,16 @@
       }
     }
 
-    // Apply discount
+  
+    // Apply discount (whole loaves, bread bowls, and bagels only — not half loaves, pizza, or croissants)
+    const discountableItems = ['whole', 'bagels-plain', 'bagels-everything'];
     let total = subtotal;
     if (activeDiscount && hasItems) {
-      const savings = Math.round(subtotal * activeDiscount.percent / 100 * 100) / 100;
+      let discountableSubtotal = 0;
+      for (const id of discountableItems) {
+        if (cart[id] > 0) discountableSubtotal += cart[id] * prices[id];
+      }
+      const savings = Math.round(discountableSubtotal * activeDiscount.percent / 100 * 100) / 100;
       total = subtotal - savings;
       html += `<div class="cart-discount">
         <span>${activeDiscount.label}</span>
