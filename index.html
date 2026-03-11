@@ -465,9 +465,9 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     padding: 2px 7px;
-    background: #f0f4ff;
-    border: 1px solid #b0c0e8;
-    color: #3a5a9a;
+    background: transparent;
+    border: 1px solid var(--stone);
+    color: var(--text-secondary);
     margin-left: 8px;
     vertical-align: middle;
   }
@@ -476,13 +476,11 @@
     font-family: 'Josefin Sans', sans-serif;
     font-size: 10px;
     letter-spacing: 1px;
-    color: #3a5a9a;
+    color: var(--text-secondary);
     margin-top: 8px;
   }
 
-  .preorder-item {
-    border-left: 3px solid #b0c0e8;
-  }
+
 
   .out-of-stock-badge {
     display: inline-block;
@@ -874,12 +872,13 @@
       </div>
     </div>
 
-    <div class="menu-item" data-id="half" data-price="7">
+    <div class="menu-item preorder-item" data-id="half" data-price="7">
       <div class="item-info">
-        <div class="item-name">Sourdough Loaf — Half</div>
+        <div class="item-name">Sourdough Loaf — Half <span class="preorder-label">Pre-Order</span></div>
         <div class="item-desc">Same beautiful loaf, half the size</div>
         <div class="item-weight">18 oz · Flour, water, starter, Himalayan sea salt</div>
         <div class="item-allergen">Allergens: Wheat</div>
+        <div class="preorder-notice">📅 Minimum 24 hours notice required</div>
       </div>
       <div class="item-right">
         <div class="item-price">$7</div>
@@ -891,12 +890,13 @@
       </div>
     </div>
 
-    <div class="menu-item" data-id="bowls" data-price="10">
+    <div class="menu-item preorder-item" data-id="bowls" data-price="10">
       <div class="item-info">
-        <div class="item-name">Sourdough Bread Bowls (4)</div>
+        <div class="item-name">Sourdough Bread Bowls (4) <span class="preorder-label">Pre-Order</span></div>
         <div class="item-desc">Same beautiful loaf, mini size. Perfect for soup!</div>
         <div class="item-weight">~9 oz each · Flour, water, starter, Himalayan sea salt</div>
         <div class="item-allergen">Allergens: Wheat</div>
+        <div class="preorder-notice">📅 Minimum 24 hours notice required</div>
       </div>
       <div class="item-right">
         <div class="item-price">$10</div>
@@ -908,14 +908,13 @@
       </div>
     </div>
 
-    <div class="menu-item" data-id="bagels-plain" data-price="10">
+    <div class="menu-item preorder-item" data-id="bagels-plain" data-price="10">
       <div class="item-info">
-        <div class="item-name">Sourdough Bagels — Plain</div>
+        <div class="item-name">Sourdough Bagels — Plain <span class="preorder-label">Pre-Order</span></div>
         <div class="item-desc">Chewy, tangy, boiled &amp; baked — sold by the half dozen</div>
         <div class="item-weight">6 ct · Flour, water, starter, active yeast, Himalayan sea salt</div>
         <div class="item-allergen">Allergens: Wheat</div>
-
-      </div>
+        <div class="preorder-notice">📅 Minimum 24 hours notice required</div></div>
       <div class="item-right">
         <div class="item-price">$10</div>
         <div class="qty-control">
@@ -926,14 +925,13 @@
       </div>
     </div>
 
-    <div class="menu-item" data-id="bagels-everything" data-price="10">
+    <div class="menu-item preorder-item" data-id="bagels-everything" data-price="10">
       <div class="item-info">
-        <div class="item-name">Sourdough Bagels — Everything</div>
+        <div class="item-name">Sourdough Bagels — Everything <span class="preorder-label">Pre-Order</span></div>
         <div class="item-desc">Chewy, tangy, boiled &amp; baked, loaded with everything seasoning — sold by the half dozen</div>
         <div class="item-weight">6 ct · Flour, water, starter, active yeast, Himalayan sea salt, sesame seeds, salt, dehydrated garlic, dehydrated onion, black sesame seeds, poppy seeds</div>
         <div class="item-allergen">Allergens: Wheat, Sesame</div>
-
-      </div>
+        <div class="preorder-notice">📅 Minimum 24 hours notice required</div></div>
       <div class="item-right">
         <div class="item-price">$10</div>
         <div class="qty-control">
@@ -944,12 +942,13 @@
       </div>
     </div>
 
-    <div class="menu-item" data-id="pizza" data-price="8">
+    <div class="menu-item preorder-item" data-id="pizza" data-price="8">
       <div class="item-info">
-        <div class="item-name">Sourdough Pizza Dough</div>
+        <div class="item-name">Sourdough Pizza Dough <span class="preorder-label">Pre-Order</span></div>
         <div class="item-desc">Ready to stretch, top, and bake — makes one large pizza</div>
         <div class="item-weight">~24 oz ball · Flour, water, starter, active yeast, olive oil, Himalayan sea salt</div>
         <div class="item-allergen">Allergens: Wheat</div>
+        <div class="preorder-notice">📅 Minimum 24 hours notice required</div>
       </div>
       <div class="item-right">
         <div class="item-price">$8</div>
