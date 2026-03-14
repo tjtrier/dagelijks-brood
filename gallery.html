@@ -679,4 +679,14 @@
 
   // Keyboard navigation
   document.addEventListener('keydown', e => {
-    if (!document.getElementById('lightbox').c
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lightboxNav(-1);
+    if (e.key === 'ArrowRight') lightboxNav(1);
+  });
+
+  // ---- INIT ----
+  renderGrid();
+</script>
+</body>
+</html>
