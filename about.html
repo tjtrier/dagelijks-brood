@@ -350,6 +350,26 @@
     .story-section { padding: 40px 20px; }
     .story-number { font-size: 52px; }
   }
+
+  .baker-photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+  border: 1px solid var(--stone);
+  float: right;
+  margin: 0 0 24px 32px;
+  shape-outside: circle();
+}
+
+@media (max-width: 600px) {
+  .baker-photo {
+    float: none;
+    display: block;
+    margin: 0 auto 28px;
+  }
+}
 </style>
 </head>
 <body>
@@ -411,6 +431,7 @@
   <span class="story-number">01</span>
   <h2 class="story-title">About Me</h2>
   <div class="story-body">
+    <img src="gallery-images/headshot_4.jpeg" alt="The baker behind Dagelijks Brood" class="baker-photo">
     <p>
       Hi — I'm the person behind Dagelijks Brood. By day, I serve as a Vice President 
       at a company where most of my time is spent solving problems, making decisions, 
