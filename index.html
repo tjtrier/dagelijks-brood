@@ -812,7 +812,7 @@
        Set to 0 if you're sold out or not baking today.
        ============================================================ -->
   <script>
-    const DAILY_BAKES_AVAILABLE = 0; // <-- CHANGE THIS NUMBER EACH DAY
+    const DAILY_BAKES_AVAILABLE = 1; // <-- CHANGE THIS NUMBER EACH DAY
   </script>
 
   <div class="daily-availability" id="availability-banner">
@@ -1295,10 +1295,21 @@
     const notes = document.getElementById('notes').value.trim();
     let finalTotal = total;
     let discountText = 'None';
+    // if (activeDiscount) {
+    //   finalTotal = (total * (1 - activeDiscount.percent / 100)).toFixed(2);
+    //   discountText = `${activeDiscount.code} (${activeDiscount.percent}% off)`;
+    // }
     if (activeDiscount) {
-      finalTotal = (total * (1 - activeDiscount.percent / 100)).toFixed(2);
-      discountText = `${activeDiscount.code} (${activeDiscount.percent}% off)`;
+      const discountableItems = ['whole', 'whole-preorder', 'bagels-plain', 'bagels-everything'];
+      let discountableSubtotal = 0;
+      for (const id of discountableItems) {
+        if (cart[id] > 0) discountableSubtotal += cart[id] * prices[id];
+      }
+      const savings = Math.round(discountableSubtotal * activeDiscount.percent / 100 * 100) / 100;
+      finalTotal = (total - savings).toFixed(2);
+      discountText = `${activeDiscount.code} (${activeDiscount.percent}% off ${activeDiscount.label})`;
     }
+    
 
     const btn = document.getElementById('submit-btn');
     btn.disabled = true;
