@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dagelijks Brood — Daily Bread</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Josefin+Sans:wght@300;400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --cream: #f5f0e8;
+    --warm-white: #faf8f4;
+    --stone: #d4cec4;
+    --wheat: #c4a96a;
+    --wheat-light: #e8d9b0;
+    --text-secondary: #6b6560;
+    --border: #2a2a2a;
+    --success: #4a6741;
+    --success-bg: #eef3ec;
+    --alert: #b8860b;
+    --alert-bg: #fffbea;
+    --alert-border: #e6c84a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  header {
+    text-align: center;
+    padding: 60px 24px 40px;
+    border-bottom: 1px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+    background: var(--warm-white);
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    max-width: 600px;
+    margin: 0 auto 24px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .logo-name {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: clamp(36px, 8vw, 64px);
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .logo-wheat {
+    display: block;
+    margin: 16px auto;
+    width: 48px;
+    height: auto;
+    opacity: 0.7;
+  }
+
+  .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+  }
+
+  .cottage-notice {
+    margin-top: 24px;
+    padding: 12px 20px;
+    font-size: 11px;
+    font-family: 'Josefin Sans', sans-serif;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    border: 1px solid var(--stone);
+    display: inline-block;
+    line-height: 1.6;
+  }
+
+  nav {
+    text-align: center;
+    padding: 16px 24px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--ink);
+    background: var(--warm-white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  nav a {
+    color: var(--ink);
+    text-decoration: none;
+    margin: 0 20px;
+    padding: 4px 0;
+    position: relative;
+    transition: color 0.3s;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 1px;
+    background: var(--ink);
+    transition: width 0.3s;
+  }
+
+  nav a:hover::after { width: 100%; }
+
+  section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+
+  .section-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .section-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--text-secondary);
+  }
+
+  .divider {
+    width: 60px; height: 1px;
+    background: var(--ink);
+    margin: 0 auto 40px;
+  }
+
+  #about { border-bottom: 1px solid var(--stone); }
+
+  .about-text {
+    font-size: 18px;
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+    line-height: 1.9;
+  }
+
+  .about-details {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+
+  .about-detail { text-align: center; }
+
+  .about-detail-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+
+  .about-detail-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  /* ---- BLACKOUT / VACATION BANNER ---- */
+  .blackout-banner {
+    background: #fdf0f0;
+    border: 2px solid #c87878;
+    padding: 20px 28px;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+
+  .blackout-banner-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #8b4040;
+    margin-bottom: 8px;
+  }
+
+  .blackout-banner-message {
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .blackout-banner-dates {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 16px;
+    border: 1.5px solid #8b4040;
+    color: #8b4040;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ---- DAILY AVAILABILITY BANNER ---- */
+  .daily-availability {
+    background: var(--alert-bg);
+    border: 2px solid var(--alert-border);
+    padding: 20px 28px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .daily-availability-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .daily-availability-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .availability-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--alert);
+    flex-shrink: 0;
+    animation: pulse 2s infinite;
+  }
+
+  .availability-dot.green { background: var(--success); animation: pulse-green 2s infinite; }
+  .availability-dot.red { background: #8b4040; animation: none; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
+  }
+  @keyframes pulse-green {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
+  }
+
+  .availability-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .availability-count-badge {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border: 1.5px solid var(--alert);
+    color: var(--alert);
+    white-space: nowrap;
+  }
+
+  .availability-count-badge.sold-out {
+    border-color: #8b4040;
+    color: #8b4040;
+  }
+
+  .availability-desc {
+    margin-top: 10px;
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .availability-order-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 1px;
+  }
+
+  /* ---- ORDER NOTICE ---- */
+  .order-notice {
+    border: 1px solid var(--wheat);
+    background: var(--cream);
+    padding: 16px 24px;
+    margin-bottom: 24px;
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .order-notice strong {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  #menu { border-bottom: 1px solid var(--stone); }
+
+  .menu-grid {
+    display: grid;
+    gap: 0;
+    border: 1px solid var(--ink);
+  }
+
+  .menu-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    padding: 28px 32px;
+    border-bottom: 1px solid var(--ink);
+    gap: 16px;
+    transition: background 0.3s;
+  }
+
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item:hover { background: var(--cream); }
+
+  .item-name {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .item-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .item-weight {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .item-allergen {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8b4040;
+    margin-top: 6px;
+  }
+
+  .item-right {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+
+  .item-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .qty-control {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--ink);
+  }
+
+  .qty-btn {
+    background: none;
+    border: none;
+    width: 32px; height: 32px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    color: var(--ink);
+  }
+
+  .qty-btn:hover { background: var(--cream); }
+  .qty-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .qty-value {
+    width: 36px;
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    border-left: 1px solid var(--ink);
+    border-right: 1px solid var(--ink);
+    line-height: 32px;
+  }
+
+  /* Daily bake tag on menu items */
+  .daily-tag {
+    display: inline-block;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    background: var(--alert-bg);
+    border: 1px solid var(--alert-border);
+    color: var(--alert);
+    margin-top: 6px;
+  }
+
+  .daily-tag.sold-out-tag {
+    background: #fdf0f0;
+    border-color: #e0a0a0;
+    color: #8b4040;
+  }
+
+  .daily-bake-label {
+    display: inline-block;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    background: var(--alert-bg);
+    border: 1px solid var(--alert-border);
+    color: var(--alert);
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .preorder-label {
+    display: inline-block;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    background: transparent;
+    border: 1px solid var(--stone);
+    color: var(--text-secondary);
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .preorder-notice {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+  }
+
+
+
+  .out-of-stock-badge {
+    display: inline-block;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    background: #fdf0f0;
+    border: 1px solid #e0a0a0;
+    color: #8b4040;
+    margin-top: 8px;
+  }
+
+  #order { border-bottom: 1px solid var(--stone); }
+
+  .cart-summary {
+    border: 1px solid var(--ink);
+    padding: 32px;
+    margin-bottom: 32px;
+  }
+
+  .cart-empty {
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 16px;
+    padding: 20px;
+  }
+
+  .cart-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 16px;
+    border-bottom: 1px solid var(--stone);
+  }
+
+  .cart-line:last-of-type { border-bottom: none; }
+
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 16px;
+    margin-top: 8px;
+    border-top: 2px solid var(--ink);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .form-group { margin-bottom: 20px; }
+
+  .form-label {
+    display: block;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 14px 16px;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 16px;
+    border: 1px solid var(--ink);
+    background: var(--warm-white);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    box-shadow: 0 0 0 1px var(--ink);
+  }
+
+  .form-textarea { resize: vertical; min-height: 80px; }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 18px 32px;
+    background: var(--ink);
+    color: var(--warm-white);
+    border: 1px solid var(--ink);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 8px;
+  }
+
+  .submit-btn:hover { background: var(--warm-white); color: var(--ink); }
+  .submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .pickup-info {
+    border: 1px solid var(--stone);
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    background: var(--cream);
+  }
+
+  .pickup-info p { font-size: 15px; color: var(--text-secondary); margin-bottom: 8px; }
+  .pickup-info p:last-child { margin-bottom: 0; }
+  .pickup-info strong { color: var(--ink); }
+
+  .discount-section { margin-bottom: 24px; }
+
+  .discount-banner {
+    border: 1px solid var(--success);
+    background: var(--success-bg);
+    padding: 14px 20px;
+    margin-bottom: 16px;
+    font-size: 15px;
+    text-align: center;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .discount-banner strong { color: var(--success); }
+
+  .discount-apply-btn {
+    padding: 14px 24px;
+    background: none;
+    border: 1px solid var(--ink);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--ink);
+  }
+
+  .discount-apply-btn:hover { background: var(--ink); color: var(--warm-white); }
+
+  .discount-msg { margin-top: 8px; font-size: 14px; font-style: italic; }
+  .discount-msg.success { color: var(--success); }
+  .discount-msg.error { color: #8b4040; }
+
+  .cart-discount {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--success);
+    font-style: italic;
+  }
+
+  .order-success {
+    text-align: center;
+    padding: 40px;
+    border: 2px solid var(--success);
+    background: var(--success-bg);
+    display: none;
+  }
+
+  .order-success h3 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--success);
+    margin-bottom: 12px;
+  }
+
+  .order-success p { font-size: 16px; color: var(--text-secondary); line-height: 1.8; }
+
+  footer {
+    text-align: center;
+    padding: 40px 24px;
+    border-top: 1px solid var(--ink);
+  }
+
+  .footer-name {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .footer-address { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+
+  .footer-cottage {
+    margin-top: 20px;
+    font-size: 11px;
+    font-family: 'Josefin Sans', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  header { animation: fadeUp 0.8s ease-out; }
+  #about { animation: fadeUp 0.8s ease-out 0.1s both; }
+  #menu { animation: fadeUp 0.8s ease-out 0.2s both; }
+
+  @media (max-width: 600px) {
+    header { padding: 40px 20px 32px; }
+    .header-top { font-size: 9px; letter-spacing: 3px; }
+    .logo-name { letter-spacing: 3px; }
+    .tagline { font-size: 18px; }
+    nav a { margin: 0 12px; font-size: 11px; letter-spacing: 2px; }
+    section { padding: 40px 20px; }
+    .section-subtitle { font-size: 26px; }
+    .menu-item { grid-template-columns: 1fr; padding: 20px 24px; }
+    .item-right { flex-direction: row; align-items: center; justify-content: space-between; margin-top: 8px; }
+    .form-row { grid-template-columns: 1fr; }
+    .cart-summary { padding: 24px 20px; }
+    .about-details { gap: 32px; }
+    .daily-availability-header { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVHJSRC12E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZVHJSRC12E');
+</script>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <span>Hand Made</span>
+    <span>Small Batch</span>
+  </div>
+  <h1 class="logo-name">Dagelijks Brood</h1>
+  <svg class="logo-wheat" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#1a1a1a" stroke-width="1.2" fill="none">
+      <line x1="50" y1="135" x2="50" y2="20"/>
+      <ellipse cx="50" cy="20" rx="6" ry="14" transform="rotate(0 50 20)"/>
+      <ellipse cx="38" cy="38" rx="5" ry="12" transform="rotate(-20 38 38)"/>
+      <ellipse cx="62" cy="38" rx="5" ry="12" transform="rotate(20 62 38)"/>
+      <ellipse cx="35" cy="58" rx="5" ry="11" transform="rotate(-25 35 58)"/>
+      <ellipse cx="65" cy="58" rx="5" ry="11" transform="rotate(25 65 58)"/>
+      <ellipse cx="38" cy="78" rx="4" ry="10" transform="rotate(-20 38 78)"/>
+      <ellipse cx="62" cy="78" rx="4" ry="10" transform="rotate(20 62 78)"/>
+      <line x1="50" y1="30" x2="38" y2="42"/>
+      <line x1="50" y1="30" x2="62" y2="42"/>
+      <line x1="50" y1="50" x2="36" y2="62"/>
+      <line x1="50" y1="50" x2="64" y2="62"/>
+      <line x1="50" y1="70" x2="39" y2="82"/>
+      <line x1="50" y1="70" x2="61" y2="82"/>
+    </g>
+  </svg>
+  <p class="tagline">Daily Bread</p>
+  <div class="cottage-notice">
+    Made in a home kitchen · Traverse City, MI<br>
+    Not inspected by Michigan Dept. of Agriculture &amp; Rural Development
+  </div>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="about.html">My Story</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="#menu">Menu</a>
+  <a href="#order">Order</a>
+</nav>
+
+<section id="about">
+  <p class="section-title">My Bread</p>
+  <div class="divider"></div>
+  <p class="about-text">
+    Real sourdough, made the slow way. Every loaf is hand shaped, naturally leavened,
+    and baked in small batches right here in Traverse City. Just flour, water,
+    starter, and Himalayan sea salt — nothing else.
+  </p>
+  <div class="about-details">
+    <div class="about-detail">
+      <div class="about-detail-label">Leavening</div>
+      <div class="about-detail-value">Wild Yeast</div>
+    </div>
+    <div class="about-detail">
+      <div class="about-detail-label">Ingredients</div>
+      <div class="about-detail-value">Flour</div>
+    </div>
+    <div class="about-detail">
+      <div class="about-detail-label">Location</div>
+      <div class="about-detail-value">Traverse City</div>
+    </div>
+    <div class="about-detail">
+      <div class="about-detail-label">Batch Size</div>
+      <div class="about-detail-value">Small</div>
+    </div>
+  </div>
+  <div style="text-align: center; margin-top: 32px;">
+    <a href="about.html" style="font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink); padding-bottom: 2px;">Read My Story →</a>
+  </div>
+</section>
+
+<section id="menu">
+  <p class="section-title">Menu</p>
+  <p class="section-subtitle">What I Bake</p>
+
+  <!-- ============================================================
+       BLACKOUT / VACATION DATES — EDIT THIS TO GO ON/OFF VACATION
+       To ENABLE blackout: set BLACKOUT_ENABLED to true and set dates.
+       To DISABLE blackout: set BLACKOUT_ENABLED to false.
+       Dates are inclusive and in YYYY-MM-DD format.
+       ============================================================ -->
+  <script>
+    const BLACKOUT_ENABLED = true;           // <-- true = on vacation, false = normal
+    const BLACKOUT_START   = '2026-04-24';   // <-- first day unavailable (inclusive)
+    const BLACKOUT_END     = '2026-05-04';   // <-- last day unavailable (inclusive)
+    const BLACKOUT_MESSAGE = "I'll be out of the country and unable to bake or deliver during this window. Pre-orders for dates after I return are very welcome — thank you for your patience!";
+  </script>
+
+  <!-- ============================================================
+       DAILY AVAILABILITY — EDIT THIS NUMBER EACH MORNING
+       Set DAILY_BAKES_AVAILABLE to however many you have today.
+       Set to 0 if you're sold out or not baking today.
+       ============================================================ -->
+  <script>
+    const DAILY_BAKES_AVAILABLE = 0; // <-- CHANGE THIS NUMBER EACH DAY
+  </script>
+
+  <!-- Blackout banner (shown only when BLACKOUT_ENABLED is true) -->
+  <div class="blackout-banner" id="blackout-banner" style="display:none;">
+    <div class="blackout-banner-title">Away From The Oven</div>
+    <div class="blackout-banner-message" id="blackout-banner-message"></div>
+    <div class="blackout-banner-dates" id="blackout-banner-dates"></div>
+  </div>
+
+  <div class="daily-availability" id="availability-banner">
+    <div class="daily-availability-header">
+      <div class="daily-availability-left">
+        <div class="availability-dot" id="avail-dot"></div>
+        <div class="availability-title">Today's Fresh Bakes</div>
+      </div>
+      <div class="availability-count-badge" id="avail-badge"></div>
+    </div>
+    <div class="availability-desc" id="avail-desc"></div>
+    <a href="#whole-loaf-daily" class="availability-order-link" id="avail-link"></a>
+  </div>
+
+  <div class="order-notice">
+    <strong>Pre-orders:</strong> Breads &amp; bagels need at least 24 hours notice. Croissants need at least 72 hours (3 days), but they are worth the wait!
+    Everything is baked fresh to order — pre-ordering guarantees your product!
+  </div>
+
+  <div class="menu-grid">
+
+    <!-- DAILY BAKE WHOLE LOAF -->
+    <div class="menu-item" data-id="whole" data-price="10" id="whole-loaf-daily">
+      <div class="item-info">
+        <div class="item-name">Sourdough Loaf — Whole <span class="daily-bake-label">Daily Bake</span></div>
+        <div class="item-desc">Classic naturally leavened sourdough, crisp crust, open crumb — baked fresh this morning</div>
+        <div class="item-weight">36 oz · Flour, water, starter, Himalayan sea salt</div>
+        <div class="item-allergen">Allergens: Wheat</div>
+        <div class="daily-tag" id="daily-tag-whole"></div>
+      </div>
+      <div class="item-right">
+        <div class="item-price">$10</div>
+        <div class="qty-control" id="daily-whole-qty-control">
+          <button class="qty-btn" onclick="changeQty('whole', -1)">−</button>
+          <div class="qty-value" id="qty-whole">0</div>
+          <button class="qty-btn" onclick="changeQty('whole', 1)" id="btn-plus-whole">+</button>
+        </div>
+        <div class="out-of-stock-badge" id="out-of-stock-whole" style="display:none;">Out of Stock Today</div>
+      </div>
+    </div>
+
+    <!-- PRE-ORDER WHOLE LOAF -->
+    <div class="menu-item preorder-item" data-id="whole-preorder" data-price="10" id="whole-loaf-preorder">
+      <div class="item-info">
+        <div class="item-name">Sourdough Loaf — Whole <span class="preorder-label">Pre-Order</span></div>
+        <div class="item-desc">Want it on a specific day? Pre-order and I'll bake it fresh for your chosen pickup date.</div>
+        <div class="item-weight">36 oz · Flour, water, starter, Himalayan sea salt</div>
+        <div class="item-allergen">Allergens: Wheat</div>
+        <div class="preorder-notice">📅 Select your pickup date below — minimum 24 hours notice required</div>
+      </div>
+      <div class="item-right">
+        <div class="item-price">$10</div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty('whole-preorder', -1)">−</button>
+          <div class="qty-value" id="qty-whole-preorder">0</div>
+          <button class="qty-btn" onclick="changeQty('whole-preorder', 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-item preorder-item" data-id="half" data-price="7">
+      <div class="item-info">
+        <div class="item-name">Sourdough Loaf — Half <span class="preorder-label">Pre-Order</span></div>
+        <div class="item-desc">Same beautiful loaf, half the size</div>
+        <div class="item-weight">18 oz · Flour, water, starter, Himalayan sea salt</div>
+        <div class="item-allergen">Allergens: Wheat</div>
+        <div class="preorder-notice">📅 Minimum 24 hours notice required</div>
+      </div>
+      <div class="item-right">
+        <div class="item-price">$7</div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty('half', -1)">−</button>
+          <div class="qty-value" id="qty-half">0</div>
+          <button class="qty-btn" onclick="changeQty('half', 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-item preorder-item" data-id="bowls" data-price="10">
+      <div class="item-info">
+        <div class="item-name">Sourdough Bread Bowls (4) <span class="preorder-label">Pre-Order</span></div>
+        <div class="item-desc">Same beautiful loaf, mini size. Perfect for soup!</div>
+        <div class="item-weight">~9 oz each · Flour, water, starter, Himalayan sea salt</div>
+        <div class="item-allergen">Allergens: Wheat</div>
+        <div class="preorder-notice">📅 Minimum 24 hours notice required</div>
+      </div>
+      <div class="item-right">
+        <div class="item-price">$10</div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty('bowls', -1)">−</button>
+          <div class="qty-value" id="qty-bowls">0</div>
+          <button class="qty-btn" onclick="changeQty('bowls', 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-item preorder-item" data-id="bagels-plain" data-price="10">
+      <div class="item-info">
+        <div class="item-name">Sourdough Bagels — Plain <span class="preorder-label">Pre-Order</span></div>
+        <div class="item-desc">Chewy, tangy, boiled &amp; baked — sold by the half dozen</div>
+        <div class="item-weight">6 ct · Flour, water, starter, active yeast, Himalayan sea salt</div>
+        <div class="item-allergen">Allergens: Wheat</div>
+        <div class="preorder-notice">📅 Minimum 24 hours notice required</div></div>
+      <div class="item-right">
+        <div class="item-price">$10</div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty('bagels-plain', -1)">−</button>
+          <div class="qty-value" id="qty-bagels-plain">0</div>
+          <button class="qty-btn" onclick="changeQty('bagels-plain', 1)" id="btn-plus-bagels-plain">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-item preorder-item" data-id="bagels-everything" data-price="10">
+      <div class="item-info">
+        <div class="item-name">Sourdough Bagels — Everything <span class="preorder-label">Pre-Order</span></div>
+        <div class="item-desc">Chewy, tangy, boiled &amp; baked, loaded with everything seasoning — sold by the half dozen</div>
+        <div class="item-weight">6 ct · Flour, water, starter, active yeast, Himalayan sea salt, sesame seeds, salt, dehydrated garlic, dehydrated onion, black sesame seeds, poppy seeds</div>
+        <div class="item-allergen">Allergens: Wheat, Sesame</div>
+        <div class="preorder-notice">📅 Minimum 24 hours notice required</div></div>
+      <div class="item-right">
+        <div class="item-price">$10</div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty('bagels-everything', -1)">−</button>
+          <div class="qty-value" id="qty-bagels-everything">0</div>
+          <button class="qty-btn" onclick="changeQty('bagels-everything', 1)" id="btn-plus-bagels-everything">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-item preorder-item" data-id="pizza" data-price="8">
+      <div class="item-info">
+        <div class="item-name">Sourdough Pizza Dough <span class="preorder-label">Pre-Order</span></div>
+        <div class="item-desc">Ready to stretch, top, and bake — makes one large pizza</div>
+        <div class="item-weight">~24 oz ball · Flour, water, starter, active yeast, olive oil, Himalayan sea salt</div>
+        <div class="item-allergen">Allergens: Wheat</div>
+        <div class="preorder-notice">📅 Minimum 24 hours notice required</div>
+      </div>
+      <div class="item-right">
+        <div class="item-price">$8</div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty('pizza', -1)">−</button>
+          <div class="qty-value" id="qty-pizza">0</div>
+          <button class="qty-btn" onclick="changeQty('pizza', 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-item" data-id="croissants" data-price="15">
+      <div class="item-info">
+        <div class="item-name">Sourdough Croissants <span class="preorder-label">Pre-Order</span></div>
+        <div class="item-desc">Buttery, flaky, laminated with sourdough tang — sold by the half dozen.</div>
+        <div class="item-weight">6 ct · Bread flour, sourdough starter, European-style butter, granulated sugar, salt, whole milk, water, egg</div>
+        <div class="item-allergen">Allergens: Wheat, Milk, Egg</div>
+        <div class="preorder-notice">📅 Minimum 72 hours (3 days) notice required</div>
+      </div>
+      <div class="item-right">
+        <div class="item-price">$15</div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty('croissants', -1)">−</button>
+          <div class="qty-value" id="qty-croissants">0</div>
+          <button class="qty-btn" onclick="changeQty('croissants', 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="order">
+  <p class="section-title">Place Your Order</p>
+  <p class="section-subtitle">Fresh Baked for You</p>
+
+  <div id="order-form-wrapper">
+    <div class="cart-summary" id="cart-summary">
+      <div class="cart-empty" id="cart-empty">Add items from the menu above</div>
+      <div id="cart-lines"></div>
+      <div class="cart-total" id="cart-total" style="display:none;">
+        <span>Total</span>
+        <span id="cart-total-amount">$0</span>
+      </div>
+    </div>
+
+    <div class="discount-section" id="discount-section">
+      <div class="discount-banner">
+        I proudly offer <strong>50% off of sourdough whole loaves and bagels</strong> for military, first responders, and seniors (55+). Enter your discount code at checkout.
+      </div>
+      <p style="font-size: 14px; color: var(--text-secondary); font-style: italic; margin-bottom: 12px;">Don't have a code? DM me on Instagram <a href="https://www.instagram.com/dagelijksbrood_sourdough" target="_blank" style="color: var(--ink);">@dagelijksbrood_sourdough</a> or email <a href="mailto:dagelijksbroodsourdough@gmail.com" style="color: var(--ink);">dagelijksbroodsourdough@gmail.com</a> and I'll get one to you.</p>
+      <div class="form-label" style="margin-bottom: 8px;">Discount Code</div>
+      <div style="display: flex; gap: 8px;">
+        <input class="form-input" type="text" id="discount-code" placeholder="Enter code" style="flex: 1; text-transform: uppercase;">
+        <button class="discount-apply-btn" onclick="applyDiscount()">Apply</button>
+      </div>
+      <div id="discount-msg" class="discount-msg"></div>
+    </div>
+
+    <div class="pickup-info">
+      <p><strong>Delivery or Meet-up Location:</strong> I will arrange delivery or meet-up at a neutral location of your choice. Leave your request in the order notes and we can discuss.</p>
+      <p><strong>Pickup Location:</strong> Orders can also be picked up by request at 9750 E Jennings Dr #108, Traverse City, MI 49684</p>
+      <p><strong>How it works:</strong> Place your order below. I will confirm availability and your meet-up/pickup time via text or email within 24 hours. Payment is collected at pickup.</p>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="name">Name</label>
+        <input class="form-input" type="text" id="name" placeholder="Your name" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="phone">Phone</label>
+        <input class="form-input" type="tel" id="phone" placeholder="(231) 555-0000" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="email">Email</label>
+      <input class="form-input" type="email" id="email" placeholder="you@email.com">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="pickup-date">Preferred Pickup / Meetup Day</label>
+      <select class="form-select" id="pickup-date">
+        <option value="">Select a day...</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="notes">Notes</label>
+      <textarea class="form-textarea" id="notes" placeholder="Anything I should know?"></textarea>
+    </div>
+
+    <button class="submit-btn" id="submit-btn" onclick="submitOrder()" disabled>Submit Order</button>
+  </div>
+
+  <div class="order-success" id="order-success">
+    <h3>Order Received!</h3>
+    <p>Thank you! I will confirm your order and pickup/meetup time shortly via text or email.<br>See you soon.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Dagelijks Brood</div>
+  <div class="footer-address">
+    9750 E Jennings Dr #108<br>
+    Traverse City, MI 49684
+  </div>
+  <div style="margin-top: 20px;"></div>
+  <div class="footer-name" style="font-size: 0.75em;">Contact Information:</div>
+  <div class="footer-address" style="font-size: 0.75em;">
+    dagelijksbroodsourdough@gmail.com<br>
+    <a href="https://www.instagram.com/dagelijksbrood_sourdough" target="_blank"
+       style="color: var(--text-secondary); text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+      @dagelijksbrood_sourdough
+    </a>
+  </div>
+  <div class="footer-cottage">
+    Made in a home kitchen that has not been inspected by the
+    Michigan Department of Agriculture &amp; Rural Development.
+    Cottage food operation under Michigan's Cottage Food Law.
+  </div>
+</footer>
+
+<script>
+  // ---- BLACKOUT HELPERS ----
+  // Parse YYYY-MM-DD as a local-date (not UTC, which would shift by timezone)
+  function parseLocalDate(str) {
+    const [y, m, d] = str.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  }
+  function toDateString(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }
+  function isDateInBlackout(d) {
+    if (!BLACKOUT_ENABLED) return false;
+    const start = parseLocalDate(BLACKOUT_START);
+    const end = parseLocalDate(BLACKOUT_END);
+    const ds = toDateString(d);
+    return ds >= toDateString(start) && ds <= toDateString(end);
+  }
+  function formatBlackoutRange() {
+    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const s = parseLocalDate(BLACKOUT_START);
+    const e = parseLocalDate(BLACKOUT_END);
+    const sameMonth = s.getMonth() === e.getMonth() && s.getFullYear() === e.getFullYear();
+    if (sameMonth) {
+      return `${months[s.getMonth()]} ${s.getDate()} – ${e.getDate()}, ${e.getFullYear()}`;
+    }
+    return `${months[s.getMonth()]} ${s.getDate()} – ${months[e.getMonth()]} ${e.getDate()}, ${e.getFullYear()}`;
+  }
+
+  // ---- RENDER BLACKOUT BANNER ----
+  function renderBlackoutBanner() {
+    const banner = document.getElementById('blackout-banner');
+    if (!BLACKOUT_ENABLED) {
+      banner.style.display = 'none';
+      return;
+    }
+    // Only show banner if we're still before or inside the blackout window
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const end = parseLocalDate(BLACKOUT_END);
+    if (today > end) {
+      banner.style.display = 'none';
+      return;
+    }
+    banner.style.display = 'block';
+    document.getElementById('blackout-banner-message').textContent = BLACKOUT_MESSAGE;
+    document.getElementById('blackout-banner-dates').textContent = 'Closed: ' + formatBlackoutRange();
+  }
+  renderBlackoutBanner();
+
+  // ---- DAILY BAKES: items that count against the daily limit ----
+  const DAILY_BAKE_ITEMS = ['whole'];
+
+  // Effective daily bakes: force 0 if today falls inside the blackout window
+  function getEffectiveDailyBakes() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (isDateInBlackout(today)) return 0;
+    return DAILY_BAKES_AVAILABLE;
+  }
+
+  // ---- RENDER AVAILABILITY BANNER ----
+  function renderAvailabilityBanner() {
+    const n = getEffectiveDailyBakes();
+    const dot = document.getElementById('avail-dot');
+    const badge = document.getElementById('avail-badge');
+    const desc = document.getElementById('avail-desc');
+    const link = document.getElementById('avail-link');
+    const qtyControl = document.getElementById('daily-whole-qty-control');
+    const outOfStock = document.getElementById('out-of-stock-whole');
+    const tag = document.getElementById('daily-tag-whole');
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const todayInBlackout = isDateInBlackout(today);
+
+    if (n <= 0) {
+      dot.className = 'availability-dot red';
+      badge.textContent = todayInBlackout ? 'Closed Today' : 'Sold Out Today';
+      badge.className = 'availability-count-badge sold-out';
+      desc.textContent = todayInBlackout
+        ? "I'm away today — no fresh bakes. Use the Pre-Order below to pick a date after I'm back!"
+        : "Today's loaves are all spoken for — use the Pre-Order below to pick a future date!";
+      link.textContent = 'Pre-order a future date →';
+      link.href = '#whole-loaf-preorder';
+      link.style.display = 'inline-block';
+      // Disable daily bake product
+      qtyControl.style.display = 'none';
+      outOfStock.style.display = 'inline-block';
+      outOfStock.textContent = todayInBlackout ? 'Closed — Pre-Order Only' : 'Out of Stock Today';
+      tag.textContent = todayInBlackout ? 'Closed Today' : 'Out of Stock Today';
+      tag.className = 'daily-tag sold-out-tag';
+      tag.style.display = 'inline-block';
+    } else {
+      dot.className = 'availability-dot green';
+      badge.textContent = n === 1 ? '1 Bake Available Today' : `${n} Bakes Available Today`;
+      badge.className = 'availability-count-badge';
+      desc.textContent = n === 1
+        ? 'Only 1 fresh bake left today — order now to claim it!'
+        : `${n} fresh bakes ready for pickup today. First come, first served!`;
+      link.textContent = 'Order now →';
+      link.href = '#whole-loaf-daily';
+      link.style.display = 'inline-block';
+      qtyControl.style.display = 'flex';
+      outOfStock.style.display = 'none';
+      tag.textContent = 'Available Today';
+      tag.className = 'daily-tag';
+      tag.style.display = 'inline-block';
+    }
+  }
+
+  renderAvailabilityBanner();
+
+  // ---- CART STATE ----
+  const cart = { whole: 0, 'whole-preorder': 0, half: 0, bowls: 0, 'bagels-plain': 0, 'bagels-everything': 0, pizza: 0, croissants: 0 };
+  const prices = { whole: 10, 'whole-preorder': 10, half: 7, bowls: 10, 'bagels-plain': 10, 'bagels-everything': 10, pizza: 8, croissants: 12 };
+  const names = {
+    whole: 'Sourdough Loaf — Whole (Daily Bake)',
+    'whole-preorder': 'Sourdough Loaf — Whole (Pre-Order)',
+    half: 'Sourdough Loaf — Half',
+    bowls: 'Sourdough Bowls (4)',
+    'bagels-plain': 'Bagels — Plain (6ct)',
+    'bagels-everything': 'Bagels — Everything (6ct)',
+    pizza: 'Pizza Dough',
+    croissants: 'Sourdough Croissants (6ct)'
+  };
+
+  // Which items need 48hr notice (croissants), everything else is 24hr
+  const NOTICE_72HR = ['croissants'];
+
+  const discountCodes = {
+    'HERO50':    { percent: 50, label: 'Military / First Responder (50% off)' },
+    'SENIOR50':  { percent: 50, label: 'Senior Discount (50% off)' },
+    'FRIENDS50': { percent: 50, label: 'Friends & Family (50% off)' },
+    'LEGENDS50': { percent: 50, label: 'Legends Morgan Farms (50% off)' },
+  };
+  let activeDiscount = null;
+
+  function applyDiscount() {
+    const input = document.getElementById('discount-code');
+    const msg = document.getElementById('discount-msg');
+    const code = input.value.trim().toUpperCase();
+    if (discountCodes[code]) {
+      activeDiscount = { code, ...discountCodes[code] };
+      msg.textContent = '✓ ' + discountCodes[code].label;
+      msg.className = 'discount-msg success';
+      input.disabled = true;
+    } else {
+      activeDiscount = null;
+      msg.textContent = 'Invalid code. Please try again.';
+      msg.className = 'discount-msg error';
+    }
+    updateCart();
+  }
+
+  function dailyBakesInCart() {
+    return DAILY_BAKE_ITEMS.reduce((sum, id) => sum + cart[id], 0);
+  }
+
+  // Returns minimum days out required based on current cart contents
+  function getMinDaysRequired() {
+      const has72 = NOTICE_72HR.some(id => cart[id] > 0);
+      return has72 ? 3 : 1;
+    }
+  function changeQty(id, delta) {
+    const effectiveDaily = getEffectiveDailyBakes();
+    // Enforce daily bake limit
+    if (delta > 0 && id === 'whole' && effectiveDaily > 0) {
+      if (dailyBakesInCart() >= effectiveDaily) {
+        alert(`Only ${effectiveDaily} loaf${effectiveDaily === 1 ? '' : 'ves'} available today. Use the Pre-Order option below to select a future date!`);
+        return;
+      }
+    }
+    // Block daily bake if sold out or on vacation
+    if (delta > 0 && id === 'whole' && effectiveDaily <= 0) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      if (isDateInBlackout(today)) {
+        alert("I'm away today — no fresh bakes available. Please use the Pre-Order option below to pick a date after I'm back!");
+      } else {
+        alert("Today's loaves are sold out. Please use the Pre-Order option below!");
+      }
+      return;
+    }
+
+    cart[id] = Math.max(0, cart[id] + delta);
+    document.getElementById('qty-' + id).textContent = cart[id];
+    updateCart();
+    populatePickupDates(); // Rebuild date picker based on new cart
+  }
+
+  function updateCart() {
+    const linesEl = document.getElementById('cart-lines');
+    const emptyEl = document.getElementById('cart-empty');
+    const totalEl = document.getElementById('cart-total');
+    const totalAmt = document.getElementById('cart-total-amount');
+    const submitBtn = document.getElementById('submit-btn');
+
+    let html = '';
+    let subtotal = 0;
+    let hasItems = false;
+
+    for (const [id, qty] of Object.entries(cart)) {
+      if (qty > 0) {
+        hasItems = true;
+        const lineTotal = qty * prices[id];
+        subtotal += lineTotal;
+        html += `<div class="cart-line">
+          <span>${names[id]} × ${qty}</span>
+          <span>$${lineTotal}</span>
+        </div>`;
+      }
+    }
+
+    const discountableItems = ['whole', 'whole-preorder', 'bagels-plain', 'bagels-everything'];
+    let total = subtotal;
+    if (activeDiscount && hasItems) {
+      let discountableSubtotal = 0;
+      for (const id of discountableItems) {
+        if (cart[id] > 0) discountableSubtotal += cart[id] * prices[id];
+      }
+      const savings = Math.round(discountableSubtotal * activeDiscount.percent / 100 * 100) / 100;
+      total = subtotal - savings;
+      html += `<div class="cart-discount">
+        <span>${activeDiscount.label}</span>
+        <span>−$${savings.toFixed(2)}</span>
+      </div>`;
+    }
+
+    linesEl.innerHTML = html;
+    emptyEl.style.display = hasItems ? 'none' : 'block';
+    totalEl.style.display = hasItems ? 'flex' : 'none';
+    totalAmt.textContent = '$' + total.toFixed(2);
+    submitBtn.disabled = !hasItems;
+  }
+
+  // ---- PICKUP DATES — smart minimum based on cart, skips blackout dates ----
+  function populatePickupDates() {
+    const select = document.getElementById('pickup-date');
+    const prevValue = select.value;
+    const minDays = getMinDaysRequired();
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const today = new Date();
+
+    // Clear existing options except placeholder
+    while (select.options.length > 1) select.remove(1);
+
+    // Update placeholder text to reflect minimum
+    select.options[0].textContent = minDays === 3
+        ? 'Select a day... (3 day min for croissants)'
+        : 'Select a day...';
+
+    // Target number of selectable dates to show (14 default).
+    // We extend the look-ahead window if a blackout is active so customers
+    // still see a useful number of post-vacation dates.
+    const targetDates = 14;
+    const maxLookahead = BLACKOUT_ENABLED ? 45 : 14;
+    let added = 0;
+
+    for (let i = minDays; i <= maxLookahead && added < targetDates; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + i);
+      if (isDateInBlackout(d)) continue; // skip vacation days
+      const opt = document.createElement('option');
+      opt.value = toDateString(d);
+      opt.textContent = `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}`;
+      // Restore previously selected value if still valid
+      if (opt.value === prevValue) opt.selected = true;
+      select.appendChild(opt);
+      added++;
+    }
+  }
+  populatePickupDates();
+
+  // ---- SUBMIT ----
+  function submitOrder() {
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+    if (!Object.values(cart).some(q => q > 0)) return;
+
+    // Safety net — should be impossible via the UI, but belt-and-suspenders:
+    const chosenDate = document.getElementById('pickup-date').value;
+    if (chosenDate) {
+      const d = parseLocalDate(chosenDate);
+      if (isDateInBlackout(d)) {
+        alert(`I'm away ${formatBlackoutRange()}. Please pick a date outside that window.`);
+        return;
+      }
+    }
+
+    let orderLines = [], total = 0;
+    for (const [id, qty] of Object.entries(cart)) {
+      if (qty > 0) {
+        const lineTotal = qty * prices[id];
+        total += lineTotal;
+        orderLines.push(`${names[id]} x${qty} — $${lineTotal}`);
+      }
+    }
+
+    const email = document.getElementById('email').value.trim();
+    const date = document.getElementById('pickup-date').value;
+    const notes = document.getElementById('notes').value.trim();
+    let finalTotal = total;
+    let discountText = 'None';
+    // if (activeDiscount) {
+    //   finalTotal = (total * (1 - activeDiscount.percent / 100)).toFixed(2);
+    //   discountText = `${activeDiscount.code} (${activeDiscount.percent}% off)`;
+    // }
+    if (activeDiscount) {
+      const discountableItems = ['whole', 'whole-preorder', 'bagels-plain', 'bagels-everything'];
+      let discountableSubtotal = 0;
+      for (const id of discountableItems) {
+        if (cart[id] > 0) discountableSubtotal += cart[id] * prices[id];
+      }
+      const savings = Math.round(discountableSubtotal * activeDiscount.percent / 100 * 100) / 100;
+      finalTotal = (total - savings).toFixed(2);
+      discountText = `${activeDiscount.code} (${activeDiscount.percent}% off ${activeDiscount.label})`;
+    }
+    
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'SENDING...';
+
+    fetch('https://formspree.io/f/mkovdrgz', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name, phone,
+        email: email || 'Not provided',
+        pickup_date: date || 'Not selected',
+        order: orderLines.join('\n'),
+        subtotal: '$' + total,
+        discount: discountText,
+        total: '$' + finalTotal,
+        notes: notes || 'None',
+        daily_bakes_available: DAILY_BAKES_AVAILABLE,
+        _subject: 'New Dagelijks Brood Order from ' + name
+      })
+    })
+    .then(response => {
+      if (response.ok) {
+        document.getElementById('order-form-wrapper').style.display = 'none';
+        document.getElementById('order-success').style.display = 'block';
+      } else {
+        alert('There was a problem submitting your order. Please try again or text/call me directly.');
+        btn.disabled = false;
+        btn.textContent = 'SUBMIT ORDER';
+      }
+    })
+    .catch(() => {
+      alert('There was a problem submitting your order. Please try again or text/call me directly.');
+      btn.disabled = false;
+      btn.textContent = 'SUBMIT ORDER';
+    });
+  }
+</script>
+</body>
+</html>
