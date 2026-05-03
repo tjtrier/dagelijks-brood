@@ -852,7 +852,7 @@
        Dates are inclusive and in YYYY-MM-DD format.
        ============================================================ -->
   <script>
-    const BLACKOUT_ENABLED = true;           // <-- true = on vacation, false = normal
+    const BLACKOUT_ENABLED = false;           // <-- true = on vacation, false = normal
     const BLACKOUT_START   = '2026-04-24';   // <-- first day unavailable (inclusive)
     const BLACKOUT_END     = '2026-05-04';   // <-- last day unavailable (inclusive)
     const BLACKOUT_MESSAGE = "I'll be out of the country and unable to bake or deliver during this window. Pre-orders for dates after I return are very welcome — thank you for your patience!";
@@ -1254,7 +1254,7 @@
 
   // ---- CART STATE ----
   const cart = { whole: 0, 'whole-preorder': 0, half: 0, bowls: 0, 'bagels-plain': 0, 'bagels-everything': 0, pizza: 0, croissants: 0 };
-  const prices = { whole: 10, 'whole-preorder': 10, half: 7, bowls: 10, 'bagels-plain': 10, 'bagels-everything': 10, pizza: 8, croissants: 12 };
+  const prices = { whole: 10, 'whole-preorder': 10, half: 7, bowls: 10, 'bagels-plain': 10, 'bagels-everything': 10, pizza: 8, croissants: 15 };
   const names = {
     whole: 'Sourdough Loaf — Whole (Daily Bake)',
     'whole-preorder': 'Sourdough Loaf — Whole (Pre-Order)',
