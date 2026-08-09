@@ -864,7 +864,7 @@
        Set to 0 if you're sold out or not baking today.
        ============================================================ -->
   <script>
-    const DAILY_BAKES_AVAILABLE = 0; // <-- CHANGE THIS NUMBER EACH DAY
+    const DAILY_BAKES_AVAILABLE = 1; // <-- CHANGE THIS NUMBER EACH DAY
   </script>
 
   <!-- Blackout banner (shown only when BLACKOUT_ENABLED is true) -->
@@ -950,6 +950,24 @@
       </div>
     </div>
 
+    <div class="menu-item preorder-item" data-id="rye" data-price="8">
+      <div class="item-info">
+        <div class="item-name">Sourdough Rye Loaf <span class="preorder-label">Pre-Order</span></div>
+        <div class="item-desc">Hearty sourdough rye with a deep, malty flavor and tight crumb</div>
+        <div class="item-weight">~36 oz · Flour, Dark Rye flour, water, starter, Molasses, Sugar, Himalayan sea salt</div>
+        <div class="item-allergen">Allergens: Wheat</div>
+        <div class="preorder-notice">📅 Minimum 24 hours notice required</div>
+      </div>
+      <div class="item-right">
+        <div class="item-price">$10</div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty('rye', -1)">−</button>
+          <div class="qty-value" id="qty-pizza">0</div>
+          <button class="qty-btn" onclick="changeQty('rye', 1)">+</button>
+        </div>
+      </div>
+    </div>   
+    
     <div class="menu-item preorder-item" data-id="bowls" data-price="10">
       <div class="item-info">
         <div class="item-name">Sourdough Bread Bowls (4) <span class="preorder-label">Pre-Order</span></div>
@@ -1002,7 +1020,8 @@
       </div>
     </div>
 
-    <div class="menu-item preorder-item" data-id="pizza" data-price="8">
+
+    <!-- <div class="menu-item preorder-item" data-id="pizza" data-price="8">
       <div class="item-info">
         <div class="item-name">Sourdough Pizza Dough <span class="preorder-label">Pre-Order</span></div>
         <div class="item-desc">Ready to stretch, top, and bake — makes one large pizza</div>
@@ -1018,7 +1037,7 @@
           <button class="qty-btn" onclick="changeQty('pizza', 1)">+</button>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="menu-item" data-id="croissants" data-price="15">
       <div class="item-info">
@@ -1253,8 +1272,8 @@
   renderAvailabilityBanner();
 
   // ---- CART STATE ----
-  const cart = { whole: 0, 'whole-preorder': 0, half: 0, bowls: 0, 'bagels-plain': 0, 'bagels-everything': 0, pizza: 0, croissants: 0 };
-  const prices = { whole: 10, 'whole-preorder': 10, half: 7, bowls: 10, 'bagels-plain': 10, 'bagels-everything': 10, pizza: 8, croissants: 15 };
+  const cart = { whole: 0, 'whole-preorder': 0, half: 0, bowls: 0, 'bagels-plain': 0, 'bagels-everything': 0, rye: 0, croissants: 0 };
+  const prices = { whole: 10, 'whole-preorder': 10, half: 7, bowls: 10, 'bagels-plain': 10, 'bagels-everything': 10, rye: 10, croissants: 15 };
   const names = {
     whole: 'Sourdough Loaf — Whole (Daily Bake)',
     'whole-preorder': 'Sourdough Loaf — Whole (Pre-Order)',
@@ -1262,7 +1281,7 @@
     bowls: 'Sourdough Bowls (4)',
     'bagels-plain': 'Bagels — Plain (6ct)',
     'bagels-everything': 'Bagels — Everything (6ct)',
-    pizza: 'Pizza Dough',
+    rye: 'Sourdough Rye Loaf — Whole (Pre-Order)', 
     croissants: 'Sourdough Croissants (6ct)'
   };
 
