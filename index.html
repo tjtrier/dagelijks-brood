@@ -323,6 +323,31 @@
     line-height: 1.6;
   }
 
+  .daily-availability-qty {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 14px;
+  }
+
+  .daily-availability-qty-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--ink);
+  }
+
+  .daily-order-hint {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-style: italic;
+    text-align: right;
+  }
+
   .availability-order-link {
     display: inline-block;
     margin-top: 8px;
@@ -864,7 +889,7 @@
        Set to 0 if you're sold out or not baking today.
        ============================================================ -->
   <script>
-    const DAILY_BAKES_AVAILABLE = 0; // <-- CHANGE THIS NUMBER EACH DAY
+    const DAILY_BAKES_AVAILABLE = 2; // <-- CHANGE THIS NUMBER EACH DAY
   </script>
 
   <!-- Blackout banner (shown only when BLACKOUT_ENABLED is true) -->
@@ -883,7 +908,15 @@
       <div class="availability-count-badge" id="avail-badge"></div>
     </div>
     <div class="availability-desc" id="avail-desc"></div>
-    <a href="#whole-loaf-daily" class="availability-order-link" id="avail-link"></a>
+    <div class="daily-availability-qty" id="banner-whole-qty-wrapper" style="display:none;">
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty('whole', -1)">−</button>
+        <div class="qty-value" data-qty-for="whole">0</div>
+        <button class="qty-btn" onclick="changeQty('whole', 1)">+</button>
+      </div>
+      <span class="daily-availability-qty-label">Sourdough Loaf — Whole · $10</span>
+    </div>
+    <a href="#whole-loaf-preorder" class="availability-order-link" id="avail-link"></a>
   </div>
 
   <div class="order-notice">
@@ -904,11 +937,7 @@
       </div>
       <div class="item-right">
         <div class="item-price">$10</div>
-        <div class="qty-control" id="daily-whole-qty-control">
-          <button class="qty-btn" onclick="changeQty('whole', -1)">−</button>
-          <div class="qty-value" id="qty-whole">0</div>
-          <button class="qty-btn" onclick="changeQty('whole', 1)" id="btn-plus-whole">+</button>
-        </div>
+        <div class="daily-order-hint" id="daily-order-hint" style="display:none;">↑ Order in the box above</div>
         <div class="out-of-stock-badge" id="out-of-stock-whole" style="display:none;">Out of Stock Today</div>
       </div>
     </div>
@@ -1246,8 +1275,9 @@
     const badge = document.getElementById('avail-badge');
     const desc = document.getElementById('avail-desc');
     const link = document.getElementById('avail-link');
-    const qtyControl = document.getElementById('daily-whole-qty-control');
+    const bannerQtyWrapper = document.getElementById('banner-whole-qty-wrapper');
     const outOfStock = document.getElementById('out-of-stock-whole');
+    const orderHint = document.getElementById('daily-order-hint');
     const tag = document.getElementById('daily-tag-whole');
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -1263,10 +1293,11 @@
       link.textContent = 'Pre-order a future date →';
       link.href = '#whole-loaf-preorder';
       link.style.display = 'inline-block';
-      // Disable daily bake product
-      qtyControl.style.display = 'none';
+      // No bakes to sell today — hide the in-banner qty control
+      bannerQtyWrapper.style.display = 'none';
       outOfStock.style.display = 'inline-block';
       outOfStock.textContent = todayInBlackout ? 'Closed — Pre-Order Only' : 'Out of Stock Today';
+      orderHint.style.display = 'none';
       tag.textContent = todayInBlackout ? 'Closed Today' : 'Out of Stock Today';
       tag.className = 'daily-tag sold-out-tag';
       tag.style.display = 'inline-block';
@@ -1275,13 +1306,13 @@
       badge.textContent = n === 1 ? '1 Bake Available Today' : `${n} Bakes Available Today`;
       badge.className = 'availability-count-badge';
       desc.textContent = n === 1
-        ? 'Only 1 fresh bake left today — order now to claim it!'
+        ? 'Only 1 fresh bake left today — order it right here!'
         : `${n} fresh bakes ready for pickup today. First come, first served!`;
-      link.textContent = 'Order now →';
-      link.href = '#whole-loaf-daily';
-      link.style.display = 'inline-block';
-      qtyControl.style.display = 'flex';
+      // Ordering now happens right in this box, so the jump link isn't needed
+      link.style.display = 'none';
+      bannerQtyWrapper.style.display = 'flex';
       outOfStock.style.display = 'none';
+      orderHint.style.display = 'block';
       tag.textContent = 'Available Today';
       tag.className = 'daily-tag';
       tag.style.display = 'inline-block';
@@ -1364,7 +1395,9 @@
     }
 
     cart[id] = Math.max(0, cart[id] + delta);
-    document.getElementById('qty-' + id).textContent = cart[id];
+    document.querySelectorAll(`[data-qty-for="${id}"]`).forEach(el => el.textContent = cart[id]);
+    const legacyDisplay = document.getElementById('qty-' + id);
+    if (legacyDisplay) legacyDisplay.textContent = cart[id];
     updateCart();
     populatePickupDates(); // Rebuild date picker based on new cart
   }
