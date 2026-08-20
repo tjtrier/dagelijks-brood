@@ -914,13 +914,14 @@
         <div class="qty-value" data-qty-for="whole">0</div>
         <button class="qty-btn" onclick="changeQty('whole', 1)">+</button>
       </div>
-      <span class="daily-availability-qty-label">Sourdough Loaf — Whole · $10</span>
+      <span class="daily-availability-qty-label">Sourdough Loaf — Whole · $10 · Same-Day Pickup</span>
     </div>
     <a href="#whole-loaf-preorder" class="availability-order-link" id="avail-link"></a>
   </div>
 
   <div class="order-notice">
-    <strong>Pre-orders:</strong> Breads &amp; bagels need at least 24 hours notice. Croissants need at least 72 hours (3 days), but they are worth the wait!
+    <strong>Today's Fresh Bakes</strong> (yellow box above, when available) can be picked up the <strong>same day</strong> — no advance notice needed.<br>
+    <strong>Everything else — Pre-orders:</strong> Breads &amp; bagels need at least 24 hours notice. Croissants need at least 72 hours (3 days), but they are worth the wait!
     Everything is baked fresh to order — pre-ordering guarantees your product!
   </div>
 
@@ -929,8 +930,8 @@
     <!-- DAILY BAKE WHOLE LOAF -->
     <div class="menu-item" data-id="whole" data-price="10" id="whole-loaf-daily">
       <div class="item-info">
-        <div class="item-name">Sourdough Loaf — Whole <span class="daily-bake-label">Daily Bake</span></div>
-        <div class="item-desc">Classic naturally leavened sourdough, crisp crust, open crumb — baked fresh this morning</div>
+        <div class="item-name">Sourdough Loaf — Whole <span class="daily-bake-label">Ready Today</span></div>
+        <div class="item-desc">Classic naturally leavened sourdough, crisp crust, open crumb — baked fresh this morning. <strong>Take it home the same day</strong> — no advance notice needed.</div>
         <div class="item-weight">36 oz · Flour, water, starter, Himalayan sea salt</div>
         <div class="item-allergen">Allergens: Wheat</div>
         <div class="daily-tag" id="daily-tag-whole"></div>
@@ -1306,8 +1307,8 @@
       badge.textContent = n === 1 ? '1 Bake Available Today' : `${n} Bakes Available Today`;
       badge.className = 'availability-count-badge';
       desc.textContent = n === 1
-        ? 'Only 1 fresh bake left today — order it right here!'
-        : `${n} fresh bakes ready for pickup today. First come, first served!`;
+        ? 'Only 1 fresh bake left today — order it right here, pick it up today, no wait!'
+        : `${n} fresh bakes ready for pickup today — no wait, no pre-order. First come, first served!`;
       // Ordering now happens right in this box, so the jump link isn't needed
       link.style.display = 'none';
       bannerQtyWrapper.style.display = 'flex';
