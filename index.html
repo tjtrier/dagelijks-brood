@@ -950,7 +950,7 @@
       </div>
     </div>
 
-    <div class="menu-item preorder-item" data-id="rye" data-price="8">
+    <div class="menu-item preorder-item" data-id="rye" data-price="10">
       <div class="item-info">
         <div class="item-name">Sourdough Rye Loaf <span class="preorder-label">Pre-Order</span></div>
         <div class="item-desc">Hearty sourdough rye with a deep, malty flavor and tight crumb</div>
@@ -962,12 +962,30 @@
         <div class="item-price">$10</div>
         <div class="qty-control">
           <button class="qty-btn" onclick="changeQty('rye', -1)">−</button>
-          <div class="qty-value" id="qty-pizza">0</div>
+          <div class="qty-value" id="qty-rye">0</div>
           <button class="qty-btn" onclick="changeQty('rye', 1)">+</button>
         </div>
       </div>
-    </div>   
-    
+    </div>
+
+    <div class="menu-item preorder-item" data-id="marbled-rye" data-price="10">
+      <div class="item-info">
+        <div class="item-name">Sourdough Marbled Rye Loaf <span class="preorder-label">Pre-Order</span></div>
+        <div class="item-desc">Swirled sourdough rye and plain doughs baked together for a striking marbled crumb and mild rye flavor</div>
+        <div class="item-weight">~36 oz · Flour, Dark Rye flour, water, starter, Molasses, Sugar, Caraway Seeds, Himalayan sea salt</div>
+        <div class="item-allergen">Allergens: Wheat</div>
+        <div class="preorder-notice">📅 Minimum 24 hours notice required</div>
+      </div>
+      <div class="item-right">
+        <div class="item-price">$10</div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty('marbled-rye', -1)">−</button>
+          <div class="qty-value" id="qty-marbled-rye">0</div>
+          <button class="qty-btn" onclick="changeQty('marbled-rye', 1)">+</button>
+        </div>
+      </div>
+    </div>
+
     <div class="menu-item preorder-item" data-id="bowls" data-price="10">
       <div class="item-info">
         <div class="item-name">Sourdough Bread Bowls (4) <span class="preorder-label">Pre-Order</span></div>
@@ -1076,7 +1094,8 @@
 
     <div class="discount-section" id="discount-section">
       <div class="discount-banner">
-        I proudly offer <strong>50% off of sourdough whole loaves and bagels</strong> for military, first responders, and seniors (55+). Enter your discount code at checkout.
+        I proudly offer <strong>50% off of sourdough whole loaves and bagels</strong> for military, first responders, and seniors (55+). Enter your discount code at checkout.<br>
+        <span style="font-size: 13px;">(Discount does not apply to rye or marbled rye loaves.)</span>
       </div>
       <p style="font-size: 14px; color: var(--text-secondary); font-style: italic; margin-bottom: 12px;">Don't have a code? DM me on Instagram <a href="https://www.instagram.com/dagelijksbrood_sourdough" target="_blank" style="color: var(--ink);">@dagelijksbrood_sourdough</a> or email <a href="mailto:dagelijksbroodsourdough@gmail.com" style="color: var(--ink);">dagelijksbroodsourdough@gmail.com</a> and I'll get one to you.</p>
       <div class="form-label" style="margin-bottom: 8px;">Discount Code</div>
@@ -1272,8 +1291,8 @@
   renderAvailabilityBanner();
 
   // ---- CART STATE ----
-  const cart = { whole: 0, 'whole-preorder': 0, half: 0, bowls: 0, 'bagels-plain': 0, 'bagels-everything': 0, rye: 0, croissants: 0 };
-  const prices = { whole: 10, 'whole-preorder': 10, half: 7, bowls: 10, 'bagels-plain': 10, 'bagels-everything': 10, rye: 10, croissants: 15 };
+  const cart = { whole: 0, 'whole-preorder': 0, half: 0, bowls: 0, 'bagels-plain': 0, 'bagels-everything': 0, rye: 0, 'marbled-rye': 0, croissants: 0 };
+  const prices = { whole: 10, 'whole-preorder': 10, half: 7, bowls: 10, 'bagels-plain': 10, 'bagels-everything': 10, rye: 10, 'marbled-rye': 10, croissants: 15 };
   const names = {
     whole: 'Sourdough Loaf — Whole (Daily Bake)',
     'whole-preorder': 'Sourdough Loaf — Whole (Pre-Order)',
@@ -1281,7 +1300,8 @@
     bowls: 'Sourdough Bowls (4)',
     'bagels-plain': 'Bagels — Plain (6ct)',
     'bagels-everything': 'Bagels — Everything (6ct)',
-    rye: 'Sourdough Rye Loaf — Whole (Pre-Order)', 
+    rye: 'Sourdough Rye Loaf — Whole (Pre-Order)',
+    'marbled-rye': 'Sourdough Marbled Rye Loaf — Whole (Pre-Order)',
     croissants: 'Sourdough Croissants (6ct)'
   };
 
@@ -1464,10 +1484,6 @@
     const notes = document.getElementById('notes').value.trim();
     let finalTotal = total;
     let discountText = 'None';
-    // if (activeDiscount) {
-    //   finalTotal = (total * (1 - activeDiscount.percent / 100)).toFixed(2);
-    //   discountText = `${activeDiscount.code} (${activeDiscount.percent}% off)`;
-    // }
     if (activeDiscount) {
       const discountableItems = ['whole', 'whole-preorder', 'half', 'bagels-plain', 'bagels-everything'];
       let discountableSubtotal = 0;
@@ -1478,7 +1494,7 @@
       finalTotal = (total - savings).toFixed(2);
       discountText = `${activeDiscount.code} (${activeDiscount.percent}% off ${activeDiscount.label})`;
     }
-    
+
 
     const btn = document.getElementById('submit-btn');
     btn.disabled = true;
