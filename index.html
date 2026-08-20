@@ -248,10 +248,33 @@
   /* ---- DAILY AVAILABILITY BANNER ---- */
   .daily-availability {
     background: var(--alert-bg);
-    border: 2px solid var(--alert-border);
-    padding: 20px 28px;
-    margin-bottom: 28px;
+    border: 1.5px solid var(--alert-border);
+    box-shadow: 0 0 0 6px var(--warm-white), 0 0 0 7.5px var(--alert-border);
+    padding: 44px 56px;
+    margin: 8px 0 40px;
     position: relative;
+    overflow: hidden;
+  }
+
+  .daily-availability-wheat {
+    position: absolute;
+    width: 100px;
+    height: auto;
+    color: var(--wheat);
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .daily-availability-wheat.corner-tl {
+    top: -18px;
+    left: 10px;
+    transform: rotate(-32deg);
+  }
+
+  .daily-availability-wheat.corner-br {
+    bottom: -18px;
+    right: 10px;
+    transform: rotate(148deg);
   }
 
   .daily-availability-header {
@@ -260,6 +283,8 @@
     justify-content: space-between;
     gap: 16px;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
   }
 
   .daily-availability-left {
@@ -269,8 +294,8 @@
   }
 
   .availability-dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background: var(--alert);
     flex-shrink: 0;
@@ -291,7 +316,7 @@
 
   .availability-title {
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -300,11 +325,11 @@
 
   .availability-count-badge {
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    padding: 6px 16px;
+    padding: 9px 22px;
     border: 1.5px solid var(--alert);
     color: var(--alert);
     white-space: nowrap;
@@ -316,23 +341,27 @@
   }
 
   .availability-desc {
-    margin-top: 10px;
-    font-size: 15px;
+    margin-top: 12px;
+    font-size: 17px;
     color: var(--text-secondary);
     font-style: italic;
     line-height: 1.6;
+    position: relative;
+    z-index: 1;
   }
 
   .daily-availability-qty {
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-top: 14px;
+    margin-top: 18px;
+    position: relative;
+    z-index: 1;
   }
 
   .daily-availability-qty-label {
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: 1px;
     color: var(--ink);
   }
@@ -350,9 +379,9 @@
 
   .availability-order-link {
     display: inline-block;
-    margin-top: 8px;
+    margin-top: 10px;
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 2.5px;
     text-transform: uppercase;
@@ -360,6 +389,8 @@
     text-decoration: none;
     border-bottom: 1px solid var(--ink);
     padding-bottom: 1px;
+    position: relative;
+    z-index: 1;
   }
 
   /* ---- ORDER NOTICE ---- */
@@ -783,6 +814,10 @@
     .cart-summary { padding: 24px 20px; }
     .about-details { gap: 32px; }
     .daily-availability-header { flex-direction: column; align-items: flex-start; }
+    .daily-availability { padding: 28px 24px; box-shadow: 0 0 0 4px var(--warm-white), 0 0 0 5.5px var(--alert-border); }
+    .daily-availability-wheat { width: 60px; }
+    .availability-title { font-size: 13px; }
+    .availability-desc { font-size: 15px; }
   }
 </style>
 <!-- Google tag (gtag.js) -->
@@ -900,6 +935,42 @@
   </div>
 
   <div class="daily-availability" id="availability-banner">
+    <svg class="daily-availability-wheat corner-tl" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g stroke="currentColor" stroke-width="1.2" fill="none">
+        <line x1="50" y1="135" x2="50" y2="20"/>
+        <ellipse cx="50" cy="20" rx="6" ry="14"/>
+        <ellipse cx="38" cy="38" rx="5" ry="12" transform="rotate(-20 38 38)"/>
+        <ellipse cx="62" cy="38" rx="5" ry="12" transform="rotate(20 62 38)"/>
+        <ellipse cx="35" cy="58" rx="5" ry="11" transform="rotate(-25 35 58)"/>
+        <ellipse cx="65" cy="58" rx="5" ry="11" transform="rotate(25 65 58)"/>
+        <ellipse cx="38" cy="78" rx="4" ry="10" transform="rotate(-20 38 78)"/>
+        <ellipse cx="62" cy="78" rx="4" ry="10" transform="rotate(20 62 78)"/>
+        <line x1="50" y1="30" x2="38" y2="42"/>
+        <line x1="50" y1="30" x2="62" y2="42"/>
+        <line x1="50" y1="50" x2="36" y2="62"/>
+        <line x1="50" y1="50" x2="64" y2="62"/>
+        <line x1="50" y1="70" x2="39" y2="82"/>
+        <line x1="50" y1="70" x2="61" y2="82"/>
+      </g>
+    </svg>
+    <svg class="daily-availability-wheat corner-br" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g stroke="currentColor" stroke-width="1.2" fill="none">
+        <line x1="50" y1="135" x2="50" y2="20"/>
+        <ellipse cx="50" cy="20" rx="6" ry="14"/>
+        <ellipse cx="38" cy="38" rx="5" ry="12" transform="rotate(-20 38 38)"/>
+        <ellipse cx="62" cy="38" rx="5" ry="12" transform="rotate(20 62 38)"/>
+        <ellipse cx="35" cy="58" rx="5" ry="11" transform="rotate(-25 35 58)"/>
+        <ellipse cx="65" cy="58" rx="5" ry="11" transform="rotate(25 65 58)"/>
+        <ellipse cx="38" cy="78" rx="4" ry="10" transform="rotate(-20 38 78)"/>
+        <ellipse cx="62" cy="78" rx="4" ry="10" transform="rotate(20 62 78)"/>
+        <line x1="50" y1="30" x2="38" y2="42"/>
+        <line x1="50" y1="30" x2="62" y2="42"/>
+        <line x1="50" y1="50" x2="36" y2="62"/>
+        <line x1="50" y1="50" x2="64" y2="62"/>
+        <line x1="50" y1="70" x2="39" y2="82"/>
+        <line x1="50" y1="70" x2="61" y2="82"/>
+      </g>
+    </svg>
     <div class="daily-availability-header">
       <div class="daily-availability-left">
         <div class="availability-dot" id="avail-dot"></div>
@@ -1124,7 +1195,7 @@
 
     <div class="discount-section" id="discount-section">
       <div class="discount-banner">
-        I proudly offer <strong>50% off of sourdough whole loaves and bagels</strong> for military, first responders, and seniors (55+). Enter your discount code at checkout.<br>
+        I proudly offer <strong>50% off of plain sourdough whole loaves and bagels</strong> for military, first responders, and seniors (55+). Enter your discount code at checkout.<br>
         <span style="font-size: 13px;">(Discount does not apply to rye or marbled rye loaves.)</span>
       </div>
       <p style="font-size: 14px; color: var(--text-secondary); font-style: italic; margin-bottom: 12px;">Don't have a code? DM me on Instagram <a href="https://www.instagram.com/dagelijksbrood_sourdough" target="_blank" style="color: var(--ink);">@dagelijksbrood_sourdough</a> or email <a href="mailto:dagelijksbroodsourdough@gmail.com" style="color: var(--ink);">dagelijksbroodsourdough@gmail.com</a> and I'll get one to you.</p>
@@ -1341,10 +1412,10 @@
   const NOTICE_72HR = ['croissants'];
 
   const discountCodes = {
-    'HERO50':    { percent: 50, label: 'Military / First Responder (50% off plain loaves and all bagels)' },
-    'SENIOR50':  { percent: 50, label: 'Senior Discount (50% off plain loaves and all bagels)' },
-    'FRIENDS50': { percent: 50, label: 'Friends & Family (50% off plain loaves and all bagels)' },
-    'LEGENDS50': { percent: 50, label: 'Legends Morgan Farms (50% off plain loaves and all bagels)' },
+    'HERO50':    { percent: 50, label: 'Military / First Responder (50% off plain loaves & bagels)' },
+    'SENIOR50':  { percent: 50, label: 'Senior Discount (50% off plain loaves & bagels)' },
+    'FRIENDS50': { percent: 50, label: 'Friends & Family (50% off plain loaves & bagels)' },
+    'LEGENDS50': { percent: 50, label: 'Legends Morgan Farms (50% off plain loaves & bagels)' },
   };
   let activeDiscount = null;
 
