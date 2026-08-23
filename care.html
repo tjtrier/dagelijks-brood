@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bread Care — Dagelijks Brood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Josefin+Sans:wght@300;400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --cream: #f5f0e8;
+    --warm-white: #faf8f4;
+    --stone: #d4cec4;
+    --wheat: #c4a96a;
+    --text-secondary: #6b6560;
+    --border: #2a2a2a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ---- HEADER ---- */
+  header {
+    text-align: center;
+    padding: 60px 24px 40px;
+    border-bottom: 1px solid var(--ink);
+    background: var(--warm-white);
+    animation: fadeUp 0.8s ease-out;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    max-width: 600px;
+    margin: 0 auto 24px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .logo-name {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: clamp(36px, 8vw, 64px);
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    text-decoration: none;
+    color: var(--ink);
+    display: inline-block;
+  }
+
+  .logo-wheat { display: block; margin: 16px auto; width: 48px; height: auto; opacity: 0.7; }
+
+  .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+  }
+
+  .cottage-notice {
+    margin-top: 24px;
+    padding: 12px 20px;
+    font-size: 11px;
+    font-family: 'Josefin Sans', sans-serif;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    border: 1px solid var(--stone);
+    display: inline-block;
+    line-height: 1.6;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    text-align: center;
+    padding: 16px 24px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--ink);
+    background: var(--warm-white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  nav a {
+    color: var(--ink);
+    text-decoration: none;
+    margin: 0 20px;
+    padding: 4px 0;
+    position: relative;
+    transition: color 0.3s;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 1px;
+    background: var(--ink);
+    transition: width 0.3s;
+  }
+
+  nav a:hover::after { width: 100%; }
+  nav a.active::after { width: 100%; }
+
+  /* ---- PAGE HERO ---- */
+  .page-hero {
+    text-align: center;
+    padding: 60px 24px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .page-hero-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+
+  .page-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .page-hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-style: italic;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .page-hero-rule { width: 60px; height: 1px; background: var(--ink); margin: 24px auto 0; }
+
+  /* ---- CARE SECTION ---- */
+  .care-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 24px;
+    border-bottom: 1px solid var(--stone);
+    animation: fadeUp 0.8s ease-out both;
+  }
+
+  .care-section:last-of-type { border-bottom: none; }
+
+  .care-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .care-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .care-intro {
+    font-size: 17px;
+    color: var(--text-secondary);
+    font-style: italic;
+    text-align: center;
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.9;
+  }
+
+  /* ---- STEP GRID ---- */
+  .steps {
+    display: grid;
+    gap: 0;
+    border: 1px solid var(--ink);
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+    padding: 28px 32px;
+    border-bottom: 1px solid var(--ink);
+    align-items: center;
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step-photo {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border: 1px solid var(--stone);
+    background: var(--cream);
+  }
+
+  .step-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    color: var(--wheat);
+    letter-spacing: 2px;
+  }
+
+  .step-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 4px 0 8px;
+  }
+
+  .step-desc {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* ---- TEMP CALLOUT ---- */
+  .temp-callout {
+    border: 1px solid var(--wheat);
+    background: var(--cream);
+    padding: 28px 32px;
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  .temp-callout-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .temp-callout-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-top: 6px;
+  }
+
+  /* ---- USES GRID (croutons, breadcrumbs, etc) ---- */
+  .uses-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 8px;
+  }
+
+  .use-card {
+    border: 1px solid var(--stone);
+    background: var(--cream);
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .use-card:hover { border-color: var(--ink); }
+
+  .use-photo {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+    background: var(--stone);
+  }
+
+  .use-body { padding: 20px 22px; }
+
+  .use-name {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .use-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* ---- FRESHNESS NOTE ---- */
+  .freshness-note {
+    border: 1px solid var(--stone);
+    padding: 24px 28px;
+    margin-top: 40px;
+    background: var(--warm-white);
+  }
+
+  .freshness-note p { font-size: 15px; color: var(--text-secondary); }
+  .freshness-note strong { color: var(--ink); }
+
+  /* ---- BACK LINK ---- */
+  .back-link-wrap { text-align: center; padding: 40px 24px 60px; }
+
+  .back-link {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    transition: opacity 0.3s;
+  }
+
+  .back-link:hover { opacity: 0.5; }
+
+  /* ---- FOOTER ---- */
+  footer { text-align: center; padding: 40px 24px; border-top: 1px solid var(--ink); }
+  .footer-name { font-family: 'Josefin Sans', sans-serif; font-size: 14px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 12px; }
+  .footer-address { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+  .footer-cottage {
+    margin-top: 20px;
+    font-size: 11px;
+    font-family: 'Josefin Sans', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 40px 20px 32px; }
+    .header-top { font-size: 9px; letter-spacing: 3px; }
+    .logo-name { letter-spacing: 3px; }
+    nav a { margin: 0 12px; font-size: 11px; }
+    .care-section { padding: 40px 20px; }
+    .step { grid-template-columns: 1fr; text-align: center; }
+    .step-photo { width: 100%; height: 180px; margin: 0 auto; }
+    .uses-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ======== HEADER ======== -->
+<header>
+  <div class="header-top">
+    <span>Hand Made</span>
+    <span>Small Batch</span>
+  </div>
+
+  <a href="index.html" class="logo-name">Dagelijks Brood</a>
+
+  <svg class="logo-wheat" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#1a1a1a" stroke-width="1.2" fill="none">
+      <line x1="50" y1="135" x2="50" y2="20"/>
+      <ellipse cx="50" cy="20" rx="6" ry="14" transform="rotate(0 50 20)"/>
+      <ellipse cx="38" cy="38" rx="5" ry="12" transform="rotate(-20 38 38)"/>
+      <ellipse cx="62" cy="38" rx="5" ry="12" transform="rotate(20 62 38)"/>
+      <ellipse cx="35" cy="58" rx="5" ry="11" transform="rotate(-25 35 58)"/>
+      <ellipse cx="65" cy="58" rx="5" ry="11" transform="rotate(25 65 58)"/>
+      <ellipse cx="38" cy="78" rx="4" ry="10" transform="rotate(-20 38 78)"/>
+      <ellipse cx="62" cy="78" rx="4" ry="10" transform="rotate(20 62 78)"/>
+      <line x1="50" y1="30" x2="38" y2="42"/>
+      <line x1="50" y1="30" x2="62" y2="42"/>
+      <line x1="50" y1="50" x2="36" y2="62"/>
+      <line x1="50" y1="50" x2="64" y2="62"/>
+      <line x1="50" y1="70" x2="39" y2="82"/>
+      <line x1="50" y1="70" x2="61" y2="82"/>
+    </g>
+  </svg>
+
+  <p class="tagline">Daily Bread</p>
+
+  <div class="cottage-notice">
+    Made in a home kitchen · Traverse City, MI<br>
+    Not inspected by Michigan Dept. of Agriculture &amp; Rural Development
+  </div>
+</header>
+
+<!-- ======== NAV ======== -->
+<nav>
+  <a href="index.html#about">About</a>
+  <a href="about.html">My Story</a>
+  <a href="index.html#menu">Menu</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="care.html" class="active">Bread Care</a>
+  <a href="index.html#order">Order</a>
+</nav>
+
+<!-- ======== PAGE HERO ======== -->
+<div class="page-hero">
+  <p class="page-hero-label">Getting the Most From Your Loaf</p>
+  <h1 class="page-hero-title">Bread Care</h1>
+  <p class="page-hero-sub">A few minutes in the oven brings a loaf right back to life — and if it's a day or two past its best, it still has plenty left to give.</p>
+  <div class="page-hero-rule"></div>
+</div>
+
+<!-- ======== SECTION 1: REHEATING ======== -->
+<div class="care-section">
+  <p class="care-label">Section One</p>
+  <h2 class="care-title">Reviving a Loaf</h2>
+  <p class="care-intro">
+    Because there are no preservatives in my bread, it dries out faster than store-bought loaves —
+    that's a good thing! A quick trip under the tap and into a hot oven brings back that
+    just-baked crust and soft interior.
+  </p>
+
+  <div class="steps">
+    <div class="step">
+      <img class="step-photo" src="gallery-images/reheat_step1.jpg" alt="Running the loaf under water">
+      <div>
+        <span class="step-number">01</span>
+        <div class="step-title">Run It Under Water</div>
+        <div class="step-desc">
+          Hold the whole loaf briefly under running water — just enough to wet the crust all over,
+          not soak it through. This steam is what re-crisps the crust and re-hydrates the crumb.
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <img class="step-photo" src="gallery-images/reheat_step2.jpg" alt="Preheating the oven">
+      <div>
+        <span class="step-number">02</span>
+        <div class="step-title">Preheat the Oven</div>
+        <div class="step-desc">
+          Set your oven to 425–450°F. Place the wetted loaf directly on the rack or on a baking sheet —
+          no need to wrap it.
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <img class="step-photo" src="gallery-images/reheat_step3.jpg" alt="Bread baking in the oven">
+      <div>
+        <span class="step-number">03</span>
+        <div class="step-title">Bake 10–15 Minutes</div>
+        <div class="step-desc">
+          Bake until the crust is crackling and golden again and the loaf feels warm all the way
+          through. Smaller items like a half loaf or bagels will be closer to 10 minutes; a full whole loaf
+          closer to 15.
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <img class="step-photo" src="gallery-images/reheat_step4.jpg" alt="Sliced fresh loaf ready to eat">
+      <div>
+        <span class="step-number">04</span>
+        <div class="step-title">Rest, Then Slice</div>
+        <div class="step-desc">
+          Let it sit 5 minutes before slicing — straight out of the oven the crumb is still setting,
+          and a short rest keeps it from gumming up under the knife.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="temp-callout">
+    <div class="temp-callout-value">425–450°F · 10–15 min</div>
+    <div class="temp-callout-label">Water the Crust First</div>
+  </div>
+</div>
+
+<!-- ======== SECTION 2: SECOND LIFE ======== -->
+<div class="care-section">
+  <p class="care-label">Section Two</p>
+  <h2 class="care-title">Give It a Second Life</h2>
+  <p class="care-intro">
+    Bread that's a few days old is a gift, not a problem — some of the best kitchen staples start
+    with a loaf that isn't at its freshest. Here are a few of my favorite ways to use it up.
+  </p>
+
+  <div class="uses-grid">
+    <div class="use-card">
+      <img class="use-photo" src="gallery-images/use_croutons.jpg" alt="Homemade croutons">
+      <div class="use-body">
+        <div class="use-name">Croutons</div>
+        <div class="use-desc">Cube the bread, toss with olive oil, salt, and herbs, and toast in the oven until golden and crisp. Perfect on soups and salads.</div>
+      </div>
+    </div>
+
+    <div class="use-card">
+      <img class="use-photo" src="gallery-images/use_breadcrumbs.jpg" alt="Fresh breadcrumbs">
+      <div class="use-body">
+        <div class="use-name">Breadcrumbs</div>
+        <div class="use-desc">Pulse dried or lightly toasted bread in a food processor. Freeze in a bag and pull out a handful anytime a recipe calls for them.</div>
+      </div>
+    </div>
+
+    <div class="use-card">
+      <img class="use-photo" src="gallery-images/use_frenchtoast.jpg" alt="French toast">
+      <div class="use-body">
+        <div class="use-name">French Toast</div>
+        <div class="use-desc">Slightly stale bread is actually ideal here — it soaks up the egg custard without falling apart, giving you a custardy center and golden edges.</div>
+      </div>
+    </div>
+
+    <div class="use-card">
+      <img class="use-photo" src="gallery-images/use_breadpudding.jpg" alt="Bread pudding">
+      <div class="use-body">
+        <div class="use-name">Bread Pudding</div>
+        <div class="use-desc">Torn or cubed loaf, baked with eggs, milk, and a little sugar and cinnamon, turns day-old bread into a warm, comforting dessert.</div>
+      </div>
+    </div>
+
+    <div class="use-card">
+      <img class="use-photo" src="gallery-images/use_panzanella.jpg" alt="Panzanella salad">
+      <div class="use-body">
+        <div class="use-name">Panzanella</div>
+        <div class="use-desc">A classic Italian bread salad — torn chunks tossed with ripe tomatoes, olive oil, vinegar, and fresh basil. The bread soaks up all the juices.</div>
+      </div>
+    </div>
+
+    <div class="use-card">
+      <img class="use-photo" src="gallery-images/use_toast.jpg" alt="Toasted bread">
+      <div class="use-body">
+        <div class="use-name">Simply Toasted</div>
+        <div class="use-desc">Don't overlook the obvious — a good toaster or a hot skillet with a little butter revives most slices in under two minutes.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="freshness-note">
+    <p>
+      <strong>A note on freshness:</strong> because there's nothing in my bread to slow staling,
+      it's best enjoyed within 2–3 days at room temperature, wrapped in a paper or cloth bag rather
+      than sealed in plastic. For longer storage, slice and freeze — toast straight from frozen anytime.
+    </p>
+  </div>
+</div>
+
+<!-- ======== BACK LINK ======== -->
+<div class="back-link-wrap">
+  <a href="index.html#order" class="back-link">← Place an Order</a>
+</div>
+
+<!-- ======== FOOTER ======== -->
+<footer>
+  <div class="footer-name">Dagelijks Brood</div>
+  <div class="footer-address">
+    9750 E Jennings Dr #108<br>
+    Traverse City, MI 49684
+  </div>
+  <div style="margin-top: 20px;"></div>
+  <div class="footer-name" style="font-size: 0.75em;">Contact Information:</div>
+  <div class="footer-address" style="font-size: 0.75em;">
+    dagelijksbroodsourdough@gmail.com
+  </div>
+  <div class="footer-cottage">
+    Made in a home kitchen that has not been inspected by the
+    Michigan Department of Agriculture &amp; Rural Development.
+    Cottage food operation under Michigan's Cottage Food Law.
+  </div>
+</footer>
+
+</body>
+</html>
