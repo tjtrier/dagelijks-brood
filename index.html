@@ -567,6 +567,25 @@
     vertical-align: middle;
   }
 
+  .menu-category { margin: 56px 0 18px; }
+  .menu-category.first { margin-top: 0; }
+  .menu-category-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--ink);
+    display: inline-block;
+  }
+  .menu-category-note {
+    margin-top: 8px;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+
   .preorder-notice {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 10px;
@@ -931,7 +950,7 @@
        ============================================================ -->
   <script>
     const ORDER_CUTOFF_HOUR   = 16;  // <-- 16 = 4 PM Eastern
-    const BREAD_LEAD_DAYS     = 2;   // <-- loaves, rye, marbled rye, bread bowls
+    const BREAD_LEAD_DAYS     = 2;   // <-- loaves, rye, marbled rye, seeded, bread bowls
     const BAGEL_LEAD_DAYS     = 1;   // <-- bagels
     const CROISSANT_LEAD_DAYS = 3;   // <-- croissants & pain au chocolat
   </script>
@@ -1014,6 +1033,10 @@
     Everything is baked fresh to order — pre-ordering guarantees your product!
   </div>
 
+  <div class="menu-category first">
+    <h3 class="menu-category-title">Loaves</h3>
+    <p class="menu-category-note">Pre-orders: order by 4 PM ET, ready 2 days later</p>
+  </div>
   <div class="menu-grid">
 
     <!-- DAILY BAKE WHOLE LOAF -->
@@ -1039,7 +1062,6 @@
         <div class="item-desc">Want it on a specific day? Pre-order and I'll bake it fresh for your chosen pickup date.</div>
         <div class="item-weight">36 oz · Flour, water, starter, Himalayan sea salt</div>
         <div class="item-allergen">Allergens: Wheat</div>
-        <div class="preorder-notice">📅 Select your pickup date below — order by 4 PM ET, ready 2 days later</div>
       </div>
       <div class="item-right">
         <div class="item-price">$10</div>
@@ -1057,7 +1079,6 @@
         <div class="item-desc">Same beautiful loaf, half the size</div>
         <div class="item-weight">18 oz · Flour, water, starter, Himalayan sea salt</div>
         <div class="item-allergen">Allergens: Wheat</div>
-        <div class="preorder-notice">📅 Order by 4 PM ET · ready 2 days later</div>
       </div>
       <div class="item-right">
         <div class="item-price">$7</div>
@@ -1075,7 +1096,6 @@
         <div class="item-desc">Hearty sourdough rye with a deep, malty flavor and tight crumb</div>
         <div class="item-weight">~36 oz · Flour, Dark Rye flour, water, starter, Molasses, Sugar, Caraway Seeds, Himalayan sea salt</div>
         <div class="item-allergen">Allergens: Wheat</div>
-        <div class="preorder-notice">📅 Order by 4 PM ET · ready 2 days later</div>
       </div>
       <div class="item-right">
         <div class="item-price">$10</div>
@@ -1093,7 +1113,6 @@
         <div class="item-desc">Swirled sourdough rye and plain doughs baked together for a striking marbled crumb and mild rye flavor</div>
         <div class="item-weight">~36 oz · Flour, Dark Rye flour, water, starter, Molasses, Sugar, Caraway Seeds, Himalayan sea salt</div>
         <div class="item-allergen">Allergens: Wheat</div>
-        <div class="preorder-notice">📅 Order by 4 PM ET · ready 2 days later</div>
       </div>
       <div class="item-right">
         <div class="item-price">$10</div>
@@ -1105,13 +1124,29 @@
       </div>
     </div>
 
+    <div class="menu-item preorder-item" data-id="seeded" data-price="12">
+      <div class="item-info">
+        <div class="item-name">Seeded Sourdough Loaf <span class="preorder-label">Pre-Order</span></div>
+        <div class="item-desc">My classic sourdough loaded with oats, pumpkin and sunflower seeds, and a touch of raw honey</div>
+        <div class="item-weight">~36 oz · Flour, water, starter, Himalayan sea salt, rolled oats, organic sprouted pumpkin seeds, sunflower seeds, organic raw honey</div>
+        <div class="item-allergen">Allergens: Wheat</div>
+      </div>
+      <div class="item-right">
+        <div class="item-price">$12</div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty('seeded', -1)">−</button>
+          <div class="qty-value" id="qty-seeded">0</div>
+          <button class="qty-btn" onclick="changeQty('seeded', 1)">+</button>
+        </div>
+      </div>
+    </div>
+
     <div class="menu-item preorder-item" data-id="bowls" data-price="10">
       <div class="item-info">
         <div class="item-name">Sourdough Bread Bowls (4) <span class="preorder-label">Pre-Order</span></div>
         <div class="item-desc">Same beautiful loaf, mini size. Perfect for soup!</div>
         <div class="item-weight">~9 oz each · Flour, water, starter, Himalayan sea salt</div>
         <div class="item-allergen">Allergens: Wheat</div>
-        <div class="preorder-notice">📅 Order by 4 PM ET · ready 2 days later</div>
       </div>
       <div class="item-right">
         <div class="item-price">$10</div>
@@ -1123,13 +1158,20 @@
       </div>
     </div>
 
+  </div>
+
+  <div class="menu-category">
+    <h3 class="menu-category-title">Bagels</h3>
+    <p class="menu-category-note">Sold by the half dozen · Order by 4 PM ET for next-day pickup</p>
+  </div>
+  <div class="menu-grid">
+
     <div class="menu-item preorder-item" data-id="bagels-plain" data-price="10">
       <div class="item-info">
         <div class="item-name">Sourdough Bagels — Plain <span class="preorder-label">Pre-Order</span></div>
         <div class="item-desc">Chewy, tangy, boiled &amp; baked — sold by the half dozen</div>
         <div class="item-weight">6 ct · Flour, water, starter, active yeast, Himalayan sea salt</div>
-        <div class="item-allergen">Allergens: Wheat</div>
-        <div class="preorder-notice">📅 Order by 4 PM ET for next-day pickup</div></div>
+        <div class="item-allergen">Allergens: Wheat</div></div>
       <div class="item-right">
         <div class="item-price">$10</div>
         <div class="qty-control">
@@ -1145,8 +1187,7 @@
         <div class="item-name">Sourdough Bagels — Everything <span class="preorder-label">Pre-Order</span></div>
         <div class="item-desc">Chewy, tangy, boiled &amp; baked, loaded with everything seasoning — sold by the half dozen</div>
         <div class="item-weight">6 ct · Flour, water, starter, active yeast, Himalayan sea salt, sesame seeds, salt, dehydrated garlic, dehydrated onion, black sesame seeds, poppy seeds</div>
-        <div class="item-allergen">Allergens: Wheat, Sesame</div>
-        <div class="preorder-notice">📅 Order by 4 PM ET for next-day pickup</div></div>
+        <div class="item-allergen">Allergens: Wheat, Sesame</div></div>
       <div class="item-right">
         <div class="item-price">$10</div>
         <div class="qty-control">
@@ -1164,7 +1205,6 @@
         <div class="item-desc">Chewy, tangy, boiled &amp; baked, finished with flaky Maldon sea salt — sold by the half dozen</div>
         <div class="item-weight">6 ct · Flour, water, starter, active yeast, Himalayan sea salt, Maldon sea salt</div>
         <div class="item-allergen">Allergens: Wheat</div>
-        <div class="preorder-notice">📅 Order by 4 PM ET for next-day pickup</div>
       </div>
       <div class="item-right">
         <div class="item-price">$10</div>
@@ -1182,7 +1222,6 @@
         <div class="item-desc">Ready to stretch, top, and bake — makes one large pizza</div>
         <div class="item-weight">~24 oz ball · Flour, water, starter, active yeast, olive oil, Himalayan sea salt</div>
         <div class="item-allergen">Allergens: Wheat</div>
-        <div class="preorder-notice">📅 Order by 4 PM ET for next-day pickup</div>
       </div>
       <div class="item-right">
         <div class="item-price">$8</div>
@@ -1194,13 +1233,20 @@
       </div>
     </div> -->
 
+  </div>
+
+  <div class="menu-category">
+    <h3 class="menu-category-title">Croissants</h3>
+    <p class="menu-category-note">Sold by the half dozen · Order by 4 PM ET, ready 3 days later</p>
+  </div>
+  <div class="menu-grid">
+
     <div class="menu-item" data-id="croissants" data-price="15">
       <div class="item-info">
         <div class="item-name">Sourdough Croissants <span class="preorder-label">Pre-Order</span></div>
         <div class="item-desc">Buttery, flaky, laminated with sourdough tang — sold by the half dozen.</div>
         <div class="item-weight">6 ct · Bread flour, sourdough starter, European-style butter, granulated sugar, salt, whole milk, water, egg</div>
         <div class="item-allergen">Allergens: Wheat, Milk, Egg</div>
-        <div class="preorder-notice">📅 Order by 4 PM ET · ready 3 days later</div>
       </div>
       <div class="item-right">
         <div class="item-price">$15</div>
@@ -1220,7 +1266,6 @@
         <div class="item-weight">6 ct · Bread flour, sourdough starter, European-style butter, granulated sugar, salt, whole milk, water, egg, Cacao Barry 44% dark chocolate (sugar, cocoa mass, cocoa butter, soy lecithin, vanillin)</div>
         <div class="item-allergen">Allergens: Wheat, Milk, Egg, Soy</div>
         <div class="item-weight">Chocolate may contain traces of peanuts &amp; tree nuts</div>
-        <div class="preorder-notice">📅 Order by 4 PM ET · ready 3 days later</div>
       </div>
       <div class="item-right">
         <div class="item-price">$20</div>
@@ -1252,7 +1297,7 @@
     <div class="discount-section" id="discount-section">
       <div class="discount-banner">
         I proudly offer <strong>50% off of plain sourdough whole loaves and bagels</strong> for military, first responders, and seniors (65+). Enter your discount code at checkout.<br>
-        <span style="font-size: 13px;">(Discount does not apply to rye or marbled rye loaves.)</span>
+        <span style="font-size: 13px;">(Discount does not apply to rye, marbled rye, or seeded loaves.)</span>
       </div>
       <p style="font-size: 14px; color: var(--text-secondary); font-style: italic; margin-bottom: 12px;">Don't have a code? DM me on Instagram <a href="https://www.instagram.com/dagelijksbrood_sourdough" target="_blank" style="color: var(--ink);">@dagelijksbrood_sourdough</a> or email <a href="mailto:dagelijksbroodsourdough@gmail.com" style="color: var(--ink);">dagelijksbroodsourdough@gmail.com</a> and I'll get one to you.</p>
       <div class="form-label" style="margin-bottom: 8px;">Discount Code</div>
@@ -1451,8 +1496,8 @@
   renderAvailabilityBanner();
 
   // ---- CART STATE ----
-  const cart = { whole: 0, 'whole-preorder': 0, half: 0, bowls: 0, 'bagels-plain': 0, 'bagels-everything': 0, 'bagels-salt': 0, rye: 0, 'marbled-rye': 0, croissants: 0, 'pain-au-chocolat': 0 };
-  const prices = { whole: 10, 'whole-preorder': 10, half: 7, bowls: 10, 'bagels-plain': 10, 'bagels-everything': 10, 'bagels-salt': 10, rye: 10, 'marbled-rye': 10, croissants: 15, 'pain-au-chocolat': 20 };
+  const cart = { whole: 0, 'whole-preorder': 0, half: 0, bowls: 0, 'bagels-plain': 0, 'bagels-everything': 0, 'bagels-salt': 0, rye: 0, 'marbled-rye': 0, seeded: 0, croissants: 0, 'pain-au-chocolat': 0 };
+  const prices = { whole: 10, 'whole-preorder': 10, half: 7, bowls: 10, 'bagels-plain': 10, 'bagels-everything': 10, 'bagels-salt': 10, rye: 10, 'marbled-rye': 10, seeded: 12, croissants: 15, 'pain-au-chocolat': 20 };
   const names = {
     whole: 'Sourdough Loaf — Whole (Daily Bake)',
     'whole-preorder': 'Sourdough Loaf — Whole (Pre-Order)',
@@ -1463,6 +1508,7 @@
     'bagels-salt': 'Bagels — Salt (6ct)',
     rye: 'Sourdough Rye Loaf — Whole (Pre-Order)',
     'marbled-rye': 'Sourdough Marbled Rye Loaf — Whole (Pre-Order)',
+    seeded: 'Seeded Sourdough Loaf — Whole (Pre-Order)',
     croissants: 'Sourdough Croissants (6ct)',
     'pain-au-chocolat': 'Sourdough Pain au Chocolat (6ct)'
   };
@@ -1514,7 +1560,7 @@
   // Earliest pickup date given the cart and the time of day
   const LEAD_DAYS = {
     'whole-preorder': BREAD_LEAD_DAYS, half: BREAD_LEAD_DAYS, rye: BREAD_LEAD_DAYS,
-    'marbled-rye': BREAD_LEAD_DAYS, bowls: BREAD_LEAD_DAYS,
+    'marbled-rye': BREAD_LEAD_DAYS, seeded: BREAD_LEAD_DAYS, bowls: BREAD_LEAD_DAYS,
     'bagels-plain': BAGEL_LEAD_DAYS, 'bagels-everything': BAGEL_LEAD_DAYS, 'bagels-salt': BAGEL_LEAD_DAYS,
     croissants: CROISSANT_LEAD_DAYS, 'pain-au-chocolat': CROISSANT_LEAD_DAYS
   };
@@ -1745,4 +1791,4 @@
   }
 </script>
 </body>
-</html>
+</html>af
