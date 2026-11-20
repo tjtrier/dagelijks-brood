@@ -1681,25 +1681,46 @@
       ? `Orders placed after ${formatCutoffHour()} ET are baked on the next day's schedule. Earliest pickup is ${earliestLabel}.`
       : `Order by ${formatCutoffHour()} ET today for pickup as early as ${earliestLabel}.`;
 
-    // Target number of selectable dates to show (14 default).
-    // We extend the look-ahead window if a blackout is active so customers
-    // still see a useful number of post-vacation dates.
-    const targetDates = 14;
-    const maxLookahead = BLACKOUT_ENABLED ? 45 : 14;
-    let added = 0;
+    // // Target number of selectable dates to show (14 default).
+    // // We extend the look-ahead window if a blackout is active so customers
+    // // still see a useful number of post-vacation dates.
+    // const targetDates = 14;
+    // const maxLookahead = BLACKOUT_ENABLED ? 45 : 14;
+    // let added = 0;
 
-    for (let i = 0; i <= maxLookahead && added < targetDates; i++) {
-      const d = new Date(earliest);
-      d.setDate(earliest.getDate() + i);
-      if (isDateInBlackout(d)) continue; // skip vacation days
-      const opt = document.createElement('option');
-      opt.value = toDateString(d);
-      opt.textContent = `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}`;
-      // Restore previously selected value if still valid
-      if (opt.value === prevValue) opt.selected = true;
-      select.appendChild(opt);
-      added++;
-    }
+    // for (let i = 0; i <= maxLookahead && added < targetDates; i++) {
+    //   const d = new Date(earliest);
+    //   d.setDate(earliest.getDate() + i);
+    //   if (isDateInBlackout(d)) continue; // skip vacation days
+    //   const opt = document.createElement('option');
+    //   opt.value = toDateString(d);
+    //   opt.textContent = `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}`;
+    //   // Restore previously selected value if still valid
+    //   if (opt.value === prevValue) opt.selected = true;
+    //   select.appendChild(opt);
+    //   added++;
+    // }
+
+  // Show 30 selectable pickup dates, skipping blackout days.
+const targetDates = 30;
+const blackoutExtraDays = BLACKOUT_ENABLED
+  ? Math.max(0, Math.ceil((parseLocalDate(BLACKOUT_END) - earliest) / 86400000))
+  : 0;
+const maxLookahead = targetDates + blackoutExtraDays;
+let added = 0;
+
+for (let i = 0; i <= maxLookahead && added < targetDates; i++) {
+  const d = new Date(earliest);
+  d.setDate(earliest.getDate() + i);
+  if (isDateInBlackout(d)) continue;
+
+  const opt = document.createElement('option');
+  opt.value = toDateString(d);
+  opt.textContent = `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}`;
+  if (opt.value === prevValue) opt.selected = true;
+  select.appendChild(opt);
+  added++;
+}
   }
   populatePickupDates();
   // Refresh every minute so a page left open past 4 PM rolls its dates forward
