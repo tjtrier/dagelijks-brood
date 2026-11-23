@@ -1403,6 +1403,10 @@
     const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
     const s = parseLocalDate(BLACKOUT_START);
     const e = parseLocalDate(BLACKOUT_END);
+    // One-day closure: show a single date, not a range
+    if (toDateString(s) === toDateString(e)) {
+      return `${months[s.getMonth()]} ${s.getDate()}, ${s.getFullYear()}`;
+    }
     const sameMonth = s.getMonth() === e.getMonth() && s.getFullYear() === e.getFullYear();
     if (sameMonth) {
       return `${months[s.getMonth()]} ${s.getDate()} – ${e.getDate()}, ${e.getFullYear()}`;
